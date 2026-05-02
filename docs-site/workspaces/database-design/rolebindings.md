@@ -1,9 +1,18 @@
 ---
-title: role_bindings
-sidebar_label: role_bindings
+title: Ws:Database Design:Rolebindings
+sidebar_label: Ws:Database Design:Rolebindings
 id: rolebindings
 ---
 
-# role_bindings
+```markdown
+### `role_bindings`
 
-Start writing here...
+| Field | Type | Notes |
+|-------|------|--------|
+| `org_id` | string | |
+| `subject_user_id` | string | User receiving the role |
+| `role_key` | string | |
+| `scope_type` | string | e.g. `org`, school-scoped values from authz layer |
+| `scope_id` | string | |
+| `created_at`, `updated_at` | datetime | |
+```
