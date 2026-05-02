@@ -1,9 +1,15 @@
 ---
-title: relationships
-sidebar_label: relationships
+title: Ws:Database Design:Relationships
+sidebar_label: Ws:Database Design:Relationships
 id: relationships
 ---
 
-# relationships
+```markdown
+### `relationships`
 
-Start writing here...
+| Field | Type | Notes |
+|-------|------|--------|
+| `org_id` | string | |
+| `relation` | string | |
+| `from_user_id`, `to_user_id` | string | Unique tuple with org + relation |
+```
