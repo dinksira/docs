@@ -4,8 +4,6 @@ sidebar_label: Ws:Database Design:Users
 id: users
 ---
 
-# Users
-
 ```markdown
 ### `users`
 
