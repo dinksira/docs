@@ -1,9 +1,16 @@
 ---
-title: content_comments
-sidebar_label: content_comments
+title: Ws:Database Design:Contentcomments
+sidebar_label: Ws:Database Design:Contentcomments
 id: contentcomments
 ---
 
-# content_comments
+```markdown
+### `content_comments`
 
-Start writing here...
+| Field | Type | Notes |
+|-------|------|--------|
+| `_id` | string | |
+| `content_id`, `user_id` | string | |
+| `body` | string | |
+| `created_at` | datetime | |
+```
