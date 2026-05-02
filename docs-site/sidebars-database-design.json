@@ -121,6 +121,11 @@
               "type": "doc",
               "id": "featurecatalog",
               "label": "feature_catalog"
+            },
+            {
+              "type": "doc",
+              "id": "deltalabs--database/mongodb-collections/schoolworkspaceitem",
+              "label": "school_workspace_items"
             }
           ]
         },
