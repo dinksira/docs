@@ -1,9 +1,15 @@
 ---
-title: content_shares
-sidebar_label: content_shares
+title: Ws:Database Design:Contentshares
+sidebar_label: Ws:Database Design:Contentshares
 id: contentshares
 ---
 
-# content_shares
+```markdown
+### `content_shares`
 
-Start writing here...
+| Field | Type | Notes |
+|-------|------|--------|
+| `_id` | string | |
+| `content_id`, `user_id` | string | |
+| `created_at` | datetime | |
+```
