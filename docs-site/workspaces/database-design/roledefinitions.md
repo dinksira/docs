@@ -1,9 +1,19 @@
 ---
-title: role_definitions
-sidebar_label: role_definitions
+title: Ws:Database Design:Roledefinitions
+sidebar_label: Ws:Database Design:Roledefinitions
 id: roledefinitions
 ---
 
-# role_definitions
+```markdown
+### `role_definitions`
 
-Start writing here...
+| Field | Type | Notes |
+|-------|------|--------|
+| `role_key` | string | Unique |
+| `title` | string | |
+| `permissions` | string[] | |
+| `description` | string \| null | |
+| `membership_state` | string | |
+| `membership_rank` | int | |
+| `created_at`, `updated_at` | datetime | |
+```
