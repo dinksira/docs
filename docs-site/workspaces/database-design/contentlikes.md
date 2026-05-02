@@ -1,9 +1,14 @@
 ---
-title: content_likes
-sidebar_label: content_likes
+title: Ws:Database Design:Contentlikes
+sidebar_label: Ws:Database Design:Contentlikes
 id: contentlikes
 ---
 
-# content_likes
+```markdown
+### `content_likes` / `content_saves`
 
-Start writing here...
+| Field | Type | Notes |
+|-------|------|--------|
+| `_id` | string | UUID |
+| `content_id`, `user_id` | string | Unique compound index |
+```
