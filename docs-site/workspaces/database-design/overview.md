@@ -26,3 +26,42 @@ Delta Labs uses **two persistence layers**:
 
 **Where to read next:** Collection purposes in the table below; field-level tables in [Collection field reference](#collection-field-reference); Redis key patterns in [Redis usage](#redis-usage). **Drivers, env vars, and app startup** are in [Runtime connectivity and configuration](#runtime-connectivity-and-configuration).
 ```
+
+```markdown
+## Runtime connectivity and configuration
+
+Low-level view: **which databases**, **which Python clients**, **which environment variables**, and **when connections are opened**.
+
+### Where settings live
+
+| Piece | Location |
+|-------|----------|
+| All tunables | `deltalabs-backend/app/core/config.py` — class `Settings` (Pydantic `BaseSettings`) |
+| Cached accessor | `get_settings()` — `@lru_cache` process singleton |
+| Env file | `.env` in the backend working directory (see `SettingsConfigDict` `env_file=".env"`) |
+| Example copy | `deltalabs-backend/.env.example` |
+
+Environment variable names are **case-insensitive** to pydantic-settings. Underscores in env map to the `snake_case` fields (e.g. `MONGODB_URI` → `mongodb_uri`).
+
+### MongoDB
+
+| Item | Detail |
+|------|--------|
+| **Engine** | MongoDB (document database); no SQL migrations in-repo |
+| **Python driver stack** | **Motor** — `AsyncIOMotorClient` / `AsyncIOMotorDatabase` (`motor.motor_asyncio`) wrapping PyMongo, async-first |
+| **Connection module** | `deltalabs-backend/app/infra/database.py` |
+| **Startup / shutdown** | `app/main.py` FastAPI `lifespan`: `connect_mongodb()` on startup; `disconnect_mongodb()` on shutdown (after Redis is closed) |
+| **Client shape** | One **global** Motor client per process; `get_database()` indexes it with `[settings.mongodb_db_name]` so all repositories share one pool |
+
+**Environment variables (Mongo):**
+
+| Variable | Default | Purpose |
+|----------|---------|---------|
+| `MONGODB_URI` | `mongodb://localhost:27017` | Full connection string (Atlas, replica set, TLS query params all go here) |
+| `MONGODB_DB_NAME` | `deltalabs` | Logical database name within the cluster |
+| `MONGODB_MAX_POOL_SIZE` | `100` | `maxPoolSize` on the client |
+| `MONGODB_MIN_POOL_SIZE` | `0` | `minPoolSize` |
+| `MONGODB_SERVER_SELECTION_TIMEOUT_MS` | `5000` | How long to wait when picking a server before error |
+
+Repositories receive the database handle from FastAPI dependencies (`get_db` yields `get_database()`).
+```
