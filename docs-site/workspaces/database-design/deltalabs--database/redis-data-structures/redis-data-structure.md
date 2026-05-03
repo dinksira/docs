@@ -7,14 +7,34 @@ id: deltalabs--database/redis-data-structures/redis-data-structure
 > Redis is not a document store; keys depend on features
 
 ```markdown
-| Area | Pattern / keys | Code reference |
-|------|----------------|----------------|
-| Signup multi-step flow | `signup:flow:{flow_id}` | `identity/signup_flow_service.py` |
-| OTP verification | Verification id keys | `identity/verification_service.py` |
-| Account recovery | Recover id keys | `identity/recover_service.py` |
-| Idempotency | Configurable TTL | `core/idempotency.py`, `idempotency_ttl_seconds` in config |
-| Feed worker | Streams (defaults `feed:engagement:events`, `feed:engagement:dead_letter`), pub/sub `feed:clip:*`, worker cursor keys | `core/config.py`, `jobs/workers.py`, `engagement/queue.py` |
-| Rate limiting | Per-IP / feature keys | `core/rate_limit.py` and related |
+### Redis
 
-Stream key names and TTLs are configurable via `deltalabs-backend/app/core/config.py`.
+| Item | Detail |
+|------|--------|
+| **Engine** | Redis (in-memory with optional persistence, depending on server config) |
+| **Python client** | **`redis.asyncio`** — `redis.from_url()` (`deltalabs-backend/app/infra/redis_client.py`) |
+| **Decoding** | `encoding="utf-8"`, `decode_responses=True` — command results that are Redis strings become Python `str` |
+| **Startup / shutdown** | `connect_redis()` on startup; `disconnect_redis()` (`aclose`) runs **before** Mongo disconnect on app shutdown |
+
+**Environment variables (Redis):**
+
+| Variable | Default | Purpose |
+|----------|---------|---------|
+| `REDIS_URL` | `redis://localhost:6379/0` | URL including host, port, optional password (`redis://:pass@host:6379/0`), and **DB index** (`/0`) |
+| `REDIS_MAX_CONNECTIONS` | `50` | Async connection pool size |
+
+### Other settings that touch “data” paths (Redis-backed)
+
+Configured on the same `Settings` object; full list in `config.py`. Examples:
+
+| Variable | Role |
+|----------|------|
+| `IDEMPOTENCY_HEADER_NAME`, `IDEMPOTENCY_TTL_SECONDS` | Header for idempotency keys and Redis record lifetime |
+| `FEED_ENGAGEMENT_STREAM_KEY`, `FEED_ENGAGEMENT_STREAM_MAXLEN` | Primary Redis Stream for feed worker input |
+| `FEED_ENGAGEMENT_DEAD_LETTER_STREAM_KEY`, `…_MAXLEN` | Failed events stream |
+| `FEED_ENGAGEMENT_PUBSUB_CHANNEL_PREFIX` | Pub/Sub prefix for clip channels |
+| `RATE_LIMIT_*`, `TRUST_X_FORWARDED_FOR` | Rate limit storage uses Redis where implemented |
+
+See [Redis usage](#redis-usage) for key naming by feature, not for connection strings.
+
 ```
