@@ -131,6 +131,19 @@
         },
         {
           "type": "category",
+          "label": "Index Catalog",
+          "collapsible": true,
+          "collapsed": false,
+          "items": [
+            {
+              "type": "doc",
+              "id": "deltalabs--database/index-catalog/mongodb-i",
+              "label": "MongoDb I"
+            }
+          ]
+        },
+        {
+          "type": "category",
           "label": "Redis Data Structures",
           "collapsible": true,
           "collapsed": false,
