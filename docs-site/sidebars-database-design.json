@@ -154,6 +154,19 @@
               "label": "RBAC Role"
             }
           ]
+        },
+        {
+          "type": "category",
+          "label": "Data Lifecycle & Retention",
+          "collapsible": true,
+          "collapsed": false,
+          "items": [
+            {
+              "type": "doc",
+              "id": "deltalabs--database/data-lifecycle--retention/data-lifecycle",
+              "label": "Data Lifecycle"
+            }
+          ]
         }
       ]
     }
