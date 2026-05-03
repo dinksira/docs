@@ -141,6 +141,19 @@
               "label": "Redis Data Structure"
             }
           ]
+        },
+        {
+          "type": "category",
+          "label": "RBAC Role Catalog",
+          "collapsible": true,
+          "collapsed": false,
+          "items": [
+            {
+              "type": "doc",
+              "id": "deltalabs--database/rbac-role-catalog/rbac-role",
+              "label": "RBAC Role"
+            }
+          ]
         }
       ]
     }
