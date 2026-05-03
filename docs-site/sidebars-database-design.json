@@ -167,6 +167,19 @@
               "label": "Data Lifecycle"
             }
           ]
+        },
+        {
+          "type": "category",
+          "label": "Operational Notes",
+          "collapsible": true,
+          "collapsed": false,
+          "items": [
+            {
+              "type": "doc",
+              "id": "deltalabs--database/operational-notes/operational-notes",
+              "label": "Operational Notes"
+            }
+          ]
         }
       ]
     }
