@@ -91,6 +91,26 @@
                           "type": "doc",
                           "id": "readmeschool",
                           "label": "ReadMe_School"
+                        },
+                        {
+                          "type": "doc",
+                          "id": "deltalabsfrontend/src/components/features/school/schoolbodysearchtsx",
+                          "label": "SchoolBodySearch.tsx"
+                        },
+                        {
+                          "type": "doc",
+                          "id": "deltalabsfrontend/src/components/features/school/schooldetailutilityactiontsx",
+                          "label": "SchoolDetailUtilityAction.tsx"
+                        },
+                        {
+                          "type": "doc",
+                          "id": "deltalabsfrontend/src/components/features/school/schoolfeatureschipclassests",
+                          "label": "SchoolFeaturesChipClasses.ts"
+                        },
+                        {
+                          "type": "doc",
+                          "id": "deltalabsfrontend/src/components/features/school/schoolsectionheadingtsx",
+                          "label": "SchoolSectionHeading.tsx"
                         }
                       ]
                     }
