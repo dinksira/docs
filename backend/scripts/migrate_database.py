@@ -34,13 +34,13 @@ from motor.motor_asyncio import AsyncIOMotorClient
 # CONFIGURATION — Update these before running
 # ============================================================
 
-# Source: Your CURRENT database (copy-paste from your .env)
-SOURCE_URI = "mongodb+srv://dinksiraelisa_db_user:2nNQO4AJtgJYIyfJ@delta-labs-docs-v2.6vbfrwu.mongodb.net/deltalabs?retryWrites=true&w=majority&appName=delta-labs-docs-v2"
-SOURCE_DB_NAME = "deltalabs"
+# Source: Your OLD database
+SOURCE_URI = os.getenv("SOURCE_MONGO_URI", "")
+SOURCE_DB_NAME = os.getenv("SOURCE_DATABASE_NAME", "deltalabs")
 
-# Target: Your NEW database (paste your new connection string here)
-TARGET_URI = ""   # <-- PASTE YOUR NEW MONGO_URI HERE
-TARGET_DB_NAME = ""   # <-- PASTE YOUR NEW DATABASE_NAME HERE
+# Target: Your NEW database
+TARGET_URI = os.getenv("MONGO_URI", "")
+TARGET_DB_NAME = os.getenv("DATABASE_NAME", "")
 
 # All collections used by Delta Labs
 COLLECTIONS = [
