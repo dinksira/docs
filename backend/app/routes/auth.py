@@ -58,6 +58,8 @@ async def google_login(body: GoogleLoginIn):
             'message': "Verification code sent to your email"
         }
 
+    except HTTPException as e:
+        raise e
     except ValueError as e:
         logger.error(f"Google Token Verification Failed: {str(e)}")
         raise HTTPException(status_code=400, detail="Invalid Google token")
@@ -105,6 +107,8 @@ async def google_signup(body: GoogleLoginIn):
 
         return {'message': 'Request submitted successfully'}
 
+    except HTTPException as e:
+        raise e
     except ValueError as e:
         logger.error(f"Google Token Verification Failed: {str(e)}")
         raise HTTPException(status_code=400, detail="Invalid Google token")
