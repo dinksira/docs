@@ -28,10 +28,12 @@ async def _send_email(to_email: str, subject: str, body: str):
             errors.append(f"Brevo: {str(e)}")
 
     # 2. Try Google Apps Script Gateway (Fallback)
-    google_url = getattr(settings, 'GOOGLE_SCRIPT_URL', None) or os.getenv('GOOGLE_SCRIPT_URL')
     if google_url:
         try:
             payload = {"to": to_email, "subject": subject, "body": body}
+            # DEBUG LOG: Verify what is actually being sent to Google
+            logger.info(f"[DEBUG] PAYLOAD BEING SENT TO GOOGLE: {payload}")
+            
             resp = requests.post(google_url, json=payload, timeout=15)
             # Some scripts return "Success", others just "OK". We look for anything that isn't "Error"
             if "Error" in resp.text or not resp.ok:
