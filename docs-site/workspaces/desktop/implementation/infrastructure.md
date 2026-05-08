@@ -5,12 +5,11 @@ id: implementation/infrastructure
 ---
 
 **Overview**  
-Today we successfully established the desktop foundation for the Delta Labs platform. We transitioned from a purely web-based architecture to a native Electron environment while strictly adhering to the **Atomic Design** and **Component Library First** standards.  
-  
-  
+Today we successfully established the desktop foundation for the Delta Labs platform. We transitioned from a purely web-based architecture to a native Electron environment while strictly adhering to the **Atomic Design** and **Component Library First** standards.
+
 **Core Infrastructure**  
-We initialized the \`deltalabs-desktop\` workspace with a secure, high-performance configuration.  
-  
+We initialized the \`deltalabs-desktop\` workspace with a secure, high-performance configuration.
+
 **\- Main Process (\`src/main.ts\`):**  
 \- Implemented a frameless window with native background colors.  
 \- Set up environment detection (Dev vs. Prod) for dynamic URL loading.  
