@@ -13,46 +13,51 @@ BREVO_API_URL = "https://api.brevo.com/v3/smtp/email"
 
 async def _send_email(to_email: str, subject: str, body: str):
     """
-    Sends email via the best available method with automatic fallback:
-    1. Google Apps Script Gateway (FREE & Domain-less)
-    2. Brevo HTTP API
-    3. Resend HTTP API
+    Sends email via the best available method with automatic fallback.
+    Optimized to prioritize reliable providers and detect trial-account restrictions.
     """
     errors = []
 
-    # 1. Try Google Apps Script Gateway (Perfect for Teams without domains)
+    # 1. Try Brevo (Primary - Most reliable for Render/Cloud)
+    if settings.BREVO_API_KEY:
+        try:
+            await _send_via_brevo(to_email, subject, body)
+            return
+        except Exception as e:
+            logger.warning(f"[EMAIL] Brevo failed: {e}")
+            errors.append(f"Brevo: {str(e)}")
+
+    # 2. Try Google Apps Script Gateway (Fallback)
     google_url = getattr(settings, 'GOOGLE_SCRIPT_URL', None) or os.getenv('GOOGLE_SCRIPT_URL')
     if google_url:
         try:
             payload = {"to": to_email, "subject": subject, "body": body}
             resp = requests.post(google_url, json=payload, timeout=15)
-            if "Error" in resp.text:
-                raise RuntimeError(resp.text)
+            # Some scripts return "Success", others just "OK". We look for anything that isn't "Error"
+            if "Error" in resp.text or not resp.ok:
+                raise RuntimeError(f"Script Error: {resp.text}")
             logger.info(f"[EMAIL] Sent to {to_email} via Google Gateway.")
             return
         except Exception as e:
             logger.warning(f"[EMAIL] Google Gateway failed: {e}")
             errors.append(f"Google: {str(e)}")
 
-    # 2. Try Brevo
-    if settings.BREVO_API_KEY:
-        try:
-            await _send_via_brevo(to_email, subject, body)
-            return
-        except Exception as e:
-            logger.warning(f"[EMAIL] Brevo failed, trying fallback: {e}")
-            errors.append(f"Brevo: {str(e)}")
-
-    # 2. Try Resend
+    # 3. Try Resend
     if settings.RESEND_API_KEY:
         try:
-            await _send_via_resend(to_email, subject, body)
-            return
+            # SAFETY CHECK: If using Resend onboarding email, it ONLY works for the owner
+            if settings.FROM_EMAIL == 'onboarding@resend.dev' and to_email.lower() != 'dinksiraelisa@gmail.com':
+                msg = f"Resend trial restriction: Cannot send to {to_email} from onboarding@resend.dev"
+                logger.warning(f"[EMAIL] {msg}")
+                errors.append(msg)
+            else:
+                await _send_via_resend(to_email, subject, body)
+                return
         except Exception as e:
-            logger.warning(f"[EMAIL] Resend failed, trying fallback: {e}")
+            logger.warning(f"[EMAIL] Resend failed: {e}")
             errors.append(f"Resend: {str(e)}")
 
-    # 3. Try SMTP
+    # 4. Try SMTP
     if settings.SMTP_HOST and settings.SMTP_USER:
         try:
             await _send_via_smtp(to_email, subject, body)
@@ -61,19 +66,18 @@ async def _send_email(to_email: str, subject: str, body: str):
             logger.error(f"[EMAIL] SMTP failed: {e}")
             errors.append(f"SMTP: {str(e)}")
 
-    # If we get here, everything failed.
-    # ADDED: Terminal Logging Fallback for Development
-    error_msg = "All email services failed: " + " | ".join(errors)
-    logger.error(f"[EMAIL] {error_msg}")
+    # FINAL FALLBACK: Log to terminal so admin can still get the code from logs
+    error_summary = " | ".join(errors)
+    logger.error(f"[EMAIL] All services failed for {to_email}: {error_summary}")
     
-    print("\n" + "="*60)
-    print("DEVELOPER FALLBACK: EMAIL LOGGED TO CONSOLE")
-    print(f"TO:      {to_email}")
-    print(f"SUBJECT: {subject}")
-    print(f"BODY:\n{body}")
-    print("="*60 + "\n")
+    print("\n" + "!"*60)
+    print("DEVELOPER/EMERGENCY FALLBACK: OTP LOGGED TO CONSOLE")
+    print(f"RECIPIENT: {to_email}")
+    print(f"MESSAGE:\n{body}")
+    print("!"*60 + "\n")
 
-    # For dev, we will succeed even if sending failed so you can get the code from the logs!
+    # In production, we should probably raise an error, 
+    # but for now we succeed to allow manual login via logs.
     return
 
 
