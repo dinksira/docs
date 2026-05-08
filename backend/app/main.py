@@ -82,9 +82,17 @@ app.add_middleware(
 
 
 @app.middleware("http")
-async def log_requests(request: Request, call_next):
+async def add_security_headers(request: Request, call_next):
+    """
+    Adds security headers required for Google OAuth and fixes COOP console errors.
+    """
     logger.info(f"Incoming request: {request.method} {request.url.path}")
     response = await call_next(request)
+    
+    # Fix Google Auth COOP errors
+    response.headers["Cross-Origin-Opener-Policy"] = "same-origin-allow-popups"
+    response.headers["Cross-Origin-Embedder-Policy"] = "require-corp"
+    
     logger.info(f"Response status: {response.status_code}")
     return response
 
