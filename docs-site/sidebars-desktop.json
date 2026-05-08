@@ -13,11 +13,6 @@
         },
         {
           "type": "doc",
-          "id": "implementation/high-fidelity-ui-components",
-          "label": "High-Fidelity UI Components"
-        },
-        {
-          "type": "doc",
           "id": "implementation/platform-integration",
           "label": "Platform Integration"
         }
