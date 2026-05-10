@@ -44,7 +44,7 @@ export default function CodeBlockComponent({ node, updateAttributes, extension }
       </div>
       
       <pre data-language={node.attrs.language}>
-        <NodeViewContent as="code" />
+        <NodeViewContent as="div" className="font-mono" />
       </pre>
     </NodeViewWrapper>
   );
