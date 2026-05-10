@@ -196,17 +196,21 @@ export default function DocsSidebar({
     const syncPastedPages = async (newNode: SidebarNode, sourceNode: SidebarNode) => {
       if (newNode.type === 'page' && newNode.slug && sourceNode.slug) {
         try {
-          // 1. Fetch source content
-          const sourceData = await api.get<{ content?: string }>(`/pages/content?slug=${sourceNode.slug}&workspace=${workspaceSlug}`);
+          // 1. Fetch source content (Using corrected endpoint /pages/{slug})
+          const sourceData = await api.get<{ content?: string }>(`/pages/${sourceNode.slug}?workspace=${workspaceSlug}`);
           const content = sourceData.content || "";
 
-          // 2. Create destination entry
+          // 2. Create destination entry (Initialize file)
           await api.post(`/sidebar/page?workspace=${workspaceSlug}`, { 
             slug: newNode.slug, 
             label: newNode.label 
           });
 
-          // 3. Transfer content
+          // 3. Settling Delay: Give GitHub/Backend a moment to finish initial file write
+          // This makes the process feel 'local' by handling latency issues automatically.
+          await new Promise(resolve => setTimeout(resolve, 1500));
+
+          // 4. Transfer content (Overwrites default template with real source data)
           await api.post(`/content/save`, {
             slug: newNode.slug,
             field: 'content',
@@ -215,18 +219,14 @@ export default function DocsSidebar({
             block_id: 'content'
           });
         } catch (e) { 
-          console.error("Failed to sync/clone pasted page:", newNode.slug, e); 
+          console.error("Failed to sync/clone pasted page content:", newNode.slug, e); 
         }
       }
       
       if (newNode.children && sourceNode.children) {
-        // Folders: Recursively sync children
         for (let i = 0; i < newNode.children.length; i++) {
           await syncPastedPages(newNode.children[i], sourceNode.children[i]);
         }
-      } else if (newNode.type === 'category' && newNode.slug === undefined) {
-        // If it's a new folder, we still need to make sure the folder structure exists if the backend requires it
-        // Note: Our backend creates folders on demand when pages are saved.
       }
     };
 
