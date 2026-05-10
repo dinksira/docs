@@ -16,15 +16,17 @@ export default function CodeBlockComponent({ node, updateAttributes, extension }
     setTimeout(() => setCopied(false), 2000);
   };
 
+  console.log("🚀 CodeBlockComponent active for node:", node.attrs.language);
+
   return (
-    <NodeViewWrapper className="code-block-wrapper group relative">
-      <div className="code-block-header absolute top-3 right-3 z-50 flex items-center gap-2 opacity-40 group-hover:opacity-100 transition-all duration-300">
+    <NodeViewWrapper className="code-block-wrapper group relative border-2 border-dashed border-blue-500/20 rounded-xl my-8">
+      <div className="code-block-header absolute top-4 right-4 z-[9999] flex items-center gap-2">
         <button
           onClick={handleCopy}
-          className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-[10px] font-bold uppercase tracking-wider transition-all shadow-lg backdrop-blur-md
+          className={`flex items-center gap-1.5 px-3 py-2 rounded-lg text-[11px] font-black uppercase tracking-widest transition-all shadow-2xl active:scale-95
             ${copied 
-              ? 'bg-emerald-500 text-white scale-105' 
-              : 'bg-white/10 hover:bg-white/20 text-slate-300 border border-white/10'}
+              ? 'bg-emerald-500 text-white' 
+              : 'bg-blue-600 text-white hover:bg-blue-500'}
           `}
         >
           {copied ? (
