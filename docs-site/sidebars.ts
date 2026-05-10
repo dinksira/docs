@@ -213,6 +213,11 @@ const sidebars: SidebarsConfig = {
     "items": [
       {
         "type": "doc",
+        "id": "development-standards/standards-intro",
+        "label": "Standards Intro"
+      },
+      {
+        "type": "doc",
         "id": "development-standards/coding-standards",
         "label": "Coding Standards"
       },
@@ -286,6 +291,11 @@ const sidebars: SidebarsConfig = {
         "type": "doc",
         "id": "api-reference/api-reference",
         "label": "API Reference"
+      },
+      {
+        "type": "doc",
+        "id": "api-reference/index",
+        "label": "Index"
       }
     ]
   },
@@ -515,6 +525,11 @@ const sidebars: SidebarsConfig = {
         "type": "doc",
         "id": "templates/how-to-template",
         "label": "How-To Template"
+      },
+      {
+        "type": "doc",
+        "id": "templates/index",
+        "label": "Index"
       }
     ]
   }
