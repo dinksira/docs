@@ -18,7 +18,9 @@ import {
   Pencil,
   Copy,
   Link2,
-  ExternalLink
+  ExternalLink,
+  Clipboard,
+  Scissors
 } from 'lucide-react';
 import { 
   DndContext, 
@@ -136,6 +138,96 @@ export default function DocsSidebar({
     if (!slug) return;
     navigator.clipboard.writeText(slug);
     addToast('success', 'Path copied to clipboard');
+  };
+
+  const [clipboard, setClipboard] = useState<SidebarNode | null>(null);
+
+  const handlePaste = async (targetParentId: string | null) => {
+    if (!clipboard) return;
+    const parentId = targetParentId === 'root' ? null : targetParentId;
+
+    // Helper to find parent path for slug derivation
+    const findNodePath = (nodes: SidebarNode[], targetId: string, currentPath: string[] = []): string[] | null => {
+      for (const n of nodes) {
+        if (n.id === targetId) return currentPath;
+        if (n.children) {
+          const catSlug = n.label.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+          const res = findNodePath(n.children, targetId, [...currentPath, catSlug]);
+          if (res) return res;
+        }
+      }
+      return null;
+    };
+
+    const parentPath = parentId ? (findNodePath(tree, parentId) || []) : [];
+
+    // Deep clone with NEW IDs and NEW Slugs
+    const preparePastedNode = (node: SidebarNode, pathSegments: string[]): SidebarNode => {
+      const newId = uuidv4();
+      const nodeNameSlug = node.label.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+      const newPath = [...pathSegments, nodeNameSlug];
+      const derivedSlug = newPath.join('/');
+
+      return {
+        ...node,
+        id: newId,
+        slug: node.type === 'page' ? derivedSlug : undefined,
+        children: node.children?.map(child => preparePastedNode(child, node.type === 'category' ? newPath : pathSegments))
+      };
+    };
+
+    const newNode = preparePastedNode(clipboard, parentPath);
+
+    // Insert into tree
+    const insertIntoTree = (nodes: SidebarNode[]): SidebarNode[] => {
+      if (parentId === null) return [...nodes, newNode];
+      return nodes.map(n => {
+        if (n.id === parentId) return { ...n, children: [...(n.children || []), newNode], isOpen: true };
+        if (n.children) return { ...n, children: insertIntoTree(n.children) };
+        return n;
+      });
+    };
+
+    const updatedTree = insertIntoTree(tree);
+    setTree(updatedTree);
+    saveSidebar(updatedTree);
+
+    // Physical creation on backend
+    const syncPastedPages = async (node: SidebarNode) => {
+      if (node.type === 'page' && node.slug) {
+        try {
+          await api.post(`/sidebar/page?workspace=${workspaceSlug}`, { slug: node.slug, label: node.label });
+        } catch (e) { console.error("Failed to sync pasted page:", node.slug, e); }
+      }
+      if (node.children) {
+        for (const child of node.children) await syncPastedPages(child);
+      }
+    };
+
+    await syncPastedPages(newNode);
+    addToast('success', `Pasted ${newNode.type === 'category' ? 'folder' : 'page'} "${newNode.label}"`);
+  };
+
+  const handleDuplicate = async (node: SidebarNode) => {
+    // Find parent ID
+    const findParentId = (nodes: SidebarNode[], targetId: string, parentId: string | null = null): string | null => {
+      for (const n of nodes) {
+        if (n.id === targetId) return parentId;
+        if (n.children) {
+          const res = findParentId(n.children, targetId, n.id);
+          if (res) return res;
+        }
+      }
+      return null;
+    };
+
+    const parentId = findParentId(tree, node.id);
+    setClipboard(node);
+    // Use setTimeout to ensure clipboard state is updated if handlePaste were to use it directly, 
+    // but here we can just call it if we refactor handlePaste to accept a node.
+    // For now, I'll just manually trigger a paste-like logic or just wait.
+    // Actually, I'll just refactor handlePaste slightly or just call it after a tiny delay.
+    setTimeout(() => handlePaste(parentId), 0);
   };
 
   useEffect(() => {
@@ -568,7 +660,19 @@ export default function DocsSidebar({
          </div>
       </div>
 
-      <div className="flex-1 overflow-y-auto px-1.5 py-2 custom-scrollbar">
+      <div 
+        className="flex-1 overflow-y-auto px-1.5 py-2 custom-scrollbar relative"
+        onContextMenu={(e) => {
+          if (e.target === e.currentTarget) {
+            e.preventDefault();
+            setContextMenu({
+              x: e.clientX,
+              y: e.clientY,
+              node: { id: 'root', type: 'category', label: 'Root', children: tree } as SidebarNode
+            });
+          }
+        }}
+      >
         <DndContext 
           sensors={sensors} 
           collisionDetection={closestCenter} 
@@ -669,6 +773,17 @@ export default function DocsSidebar({
           <div className="context-menu-icon-bar">
             <button
               className="context-menu-icon-btn"
+              title="Copy"
+              onClick={() => {
+                setClipboard(contextMenu.node);
+                addToast('info', `Copied "${contextMenu.node.label}" to clipboard`);
+                setContextMenu(null);
+              }}
+            >
+              <Copy size={15} />
+            </button>
+            <button
+              className="context-menu-icon-btn"
               title="Rename"
               onClick={() => {
                 setEditingId(contextMenu.node.id);
@@ -677,16 +792,6 @@ export default function DocsSidebar({
               }}
             >
               <Pencil size={15} />
-            </button>
-            <button
-              className="context-menu-icon-btn"
-              title="Copy Path"
-              onClick={() => {
-                handleCopySlug(contextMenu.node.slug);
-                setContextMenu(null);
-              }}
-            >
-              <Copy size={15} />
             </button>
             <button
               className="context-menu-icon-btn danger"
@@ -704,6 +809,18 @@ export default function DocsSidebar({
           {/* Main Menu Items */}
           {contextMenu.node.type === 'category' && (
             <>
+              <div
+                className={`context-menu-item ${!clipboard ? 'opacity-40 pointer-events-none' : ''}`}
+                onClick={() => {
+                  handlePaste(contextMenu.node.id);
+                  setContextMenu(null);
+                }}
+              >
+                <Clipboard size={16} className="text-[var(--text-muted)]" />
+                <span>{contextMenu.node.id === 'root' ? 'Paste into Root' : 'Paste into folder'}</span>
+                <span className="shortcut">Ctrl+V</span>
+              </div>
+              <div className="context-menu-divider" />
               <div
                 className="context-menu-item"
                 onClick={() => {
@@ -727,6 +844,33 @@ export default function DocsSidebar({
               <div className="context-menu-divider" />
             </>
           )}
+
+          <div
+            className="context-menu-item"
+            onClick={() => {
+              setClipboard(contextMenu.node);
+              addToast('info', `Copied "${contextMenu.node.label}" to clipboard`);
+              setContextMenu(null);
+            }}
+          >
+            <Copy size={16} className="text-[var(--text-muted)]" />
+            <span>Copy</span>
+            <span className="shortcut">Ctrl+C</span>
+          </div>
+
+          <div
+            className="context-menu-item"
+            onClick={() => {
+              handleDuplicate(contextMenu.node);
+              setContextMenu(null);
+            }}
+          >
+            <Copy size={16} className="text-[var(--text-muted)]" />
+            <span>Duplicate</span>
+            <span className="shortcut">Ctrl+D</span>
+          </div>
+
+          <div className="context-menu-divider" />
 
           <div
             className="context-menu-item"
