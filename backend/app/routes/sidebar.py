@@ -243,6 +243,37 @@ async def save_sidebar(
             )
             logger.info(f"Sidebar saved to MongoDB and GitHub for workspace '{workspace}'")
         
+        # 4. Auto-Provisioning: Ensure every page in the tree has a physical file
+        # This supports the 'Local-First' copy/paste workflow
+        def ensure_pages_exist(nodes, ws):
+            for node in nodes:
+                if node.get("type") == "page" and node.get("slug"):
+                    slug = node["slug"]
+                    # Normalize slug: remove ws:prefix if it's already there
+                    prefix = f"ws:{ws}:"
+                    clean_slug = slug[len(prefix):] if slug.startswith(prefix) else slug
+                    safe_slug = clean_slug.replace(":", "-")
+                    
+                    # Determine path
+                    if ws == "docs":
+                        fpath = f"docs-site/docs/{safe_slug}.md"
+                    else:
+                        fpath = f"docs-site/workspaces/{ws}/{safe_slug}.md"
+                    
+                    # Check if file exists in our valid_slugs list
+                    # (Simplified check: if it's not in the list, try to create it)
+                    current_slugs = valid_slugs if ws == "docs" else (ws_valid_slugs if 'ws_valid_slugs' in locals() else [])
+                    if clean_slug not in current_slugs:
+                        title = node.get("label", clean_slug)
+                        content = f"---\ntitle: {title}\nsidebar_label: {title}\nid: {safe_slug}\n---\n\n# {title}\n\nStart writing here...\n"
+                        logger.info(f"Auto-provisioning missing file: {fpath}")
+                        write_file(path=fpath, content=content, message=f"chore({ws}): auto-create file for {clean_slug}")
+                
+                if node.get("children"):
+                    ensure_pages_exist(node["children"], ws)
+
+        ensure_pages_exist(clean_tree, workspace)
+        
         from app.github_client import _trigger_vercel_rebuild as trigger_rebuild
         trigger_rebuild()
         logger.info(f"Vercel rebuild triggered after sidebar save for workspace '{workspace}'")

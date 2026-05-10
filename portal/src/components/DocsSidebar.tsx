@@ -190,48 +190,38 @@ export default function DocsSidebar({
 
     const updatedTree = insertIntoTree(tree);
     setTree(updatedTree);
-    saveSidebar(updatedTree);
+    
+    // Save the new tree structure to local drafts
+    draftStore.saveSidebar(updatedTree, workspaceSlug);
 
-    // Physical creation & Content Transfer on backend
-    const syncPastedPages = async (newNode: SidebarNode, sourceNode: SidebarNode) => {
+    // Local Content Cloning (No immediate API write)
+    const cloneContentToDrafts = async (newNode: SidebarNode, sourceNode: SidebarNode) => {
       if (newNode.type === 'page' && newNode.slug && sourceNode.slug) {
         try {
-          // 1. Fetch source content (Using corrected endpoint /pages/{slug})
+          // 1. Fetch source content (current state)
           const sourceData = await api.get<{ content?: string }>(`/pages/${sourceNode.slug}?workspace=${workspaceSlug}`);
           const content = sourceData.content || "";
 
-          // 2. Create destination entry (Initialize file)
-          await api.post(`/sidebar/page?workspace=${workspaceSlug}`, { 
-            slug: newNode.slug, 
-            label: newNode.label 
-          });
-
-          // 3. Settling Delay: Give GitHub/Backend a moment to finish initial file write
-          // This makes the process feel 'local' by handling latency issues automatically.
-          await new Promise(resolve => setTimeout(resolve, 1500));
-
-          // 4. Transfer content (Overwrites default template with real source data)
-          await api.post(`/content/save`, {
-            slug: newNode.slug,
-            field: 'content',
-            newValue: content,
-            workspace: workspaceSlug,
-            block_id: 'content'
-          });
+          // 2. Save to LOCAL Draft Store (Not GitHub)
+          // This makes the paste feel 'local memory' fast.
+          draftStore.saveField(newNode.slug, 'content', content, "", workspaceSlug);
+          
         } catch (e) { 
-          console.error("Failed to sync/clone pasted page content:", newNode.slug, e); 
+          console.error("Failed to fetch content for local clone:", sourceNode.slug, e); 
         }
       }
       
       if (newNode.children && sourceNode.children) {
         for (let i = 0; i < newNode.children.length; i++) {
-          await syncPastedPages(newNode.children[i], sourceNode.children[i]);
+          await cloneContentToDrafts(newNode.children[i], sourceNode.children[i]);
         }
       }
     };
 
-    await syncPastedPages(newNode, clipboard);
-    addToast('success', `Pasted ${newNode.type === 'category' ? 'folder' : 'page'} "${newNode.label}" with content`);
+    // Kick off background fetch so the content is ready in local drafts
+    cloneContentToDrafts(newNode, clipboard);
+    
+    addToast('success', `Added "${newNode.label}" to drafts (Publish to save)`);
   };
 
   const handleDuplicate = async (node: SidebarNode) => {
@@ -387,7 +377,7 @@ export default function DocsSidebar({
 
   const confirmDeleteNode = async () => {
     if (!deleteTarget) return;
-    const { id, slug } = deleteTarget;
+    const { id } = deleteTarget;
     setDeleteLoading(true);
 
     const removeFromTree = (nodes: SidebarNode[]): SidebarNode[] =>
@@ -398,15 +388,10 @@ export default function DocsSidebar({
     const updatedTree = removeFromTree(tree);
     setTree(updatedTree);
 
-    if (slug) {
-      try {
-        await api.delete(`/sidebar/page/${slug}?workspace=${workspaceSlug}`);
-      } catch (err) {
-        console.error('Failed to delete page file:', err);
-      }
-    }
-
+    // Draft-First: We only save the structural change locally.
+    // The backend will synchronize the physical files during the final Publish/Save Sidebar phase.
     saveSidebar(updatedTree);
+    
     setDeleteLoading(false);
     setDeleteTarget(null);
   };
@@ -472,25 +457,8 @@ export default function DocsSidebar({
 
     if (isPending) {
       pendingNodeIds.current.delete(id);
-      if (node?.type === 'page' && derivedSlug) {
-        try {
-          await api.post(`/sidebar/page?workspace=${workspaceSlug}`, { slug: derivedSlug, label });
-        } catch (err: any) {
-          console.error('Failed to create page:', err);
-          const detail = err?.response?.data?.detail || err?.message || '';
-          if (detail.includes('already exists')) {
-            addToast('error', `A page named "${label}" already exists in this folder. Try a different name or move it to another folder.`);
-          } else {
-            addToast('error', 'Failed to create page. Please try again.');
-          }
-          const removeFromTree = (nodes: SidebarNode[]): SidebarNode[] =>
-            nodes.filter(n => n.id !== id).map(n => ({
-              ...n, children: n.children ? removeFromTree(n.children) : []
-            }));
-          setTree(removeFromTree(tree));
-          return;
-        }
-      }
+      // Draft-First: We don't call the API here anymore. 
+      // The backend will auto-create this file when 'Publish' is clicked.
     }
 
     saveSidebar(updatedTree);
