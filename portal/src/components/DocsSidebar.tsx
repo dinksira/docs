@@ -192,20 +192,46 @@ export default function DocsSidebar({
     setTree(updatedTree);
     saveSidebar(updatedTree);
 
-    // Physical creation on backend
-    const syncPastedPages = async (node: SidebarNode) => {
-      if (node.type === 'page' && node.slug) {
+    // Physical creation & Content Transfer on backend
+    const syncPastedPages = async (newNode: SidebarNode, sourceNode: SidebarNode) => {
+      if (newNode.type === 'page' && newNode.slug && sourceNode.slug) {
         try {
-          await api.post(`/sidebar/page?workspace=${workspaceSlug}`, { slug: node.slug, label: node.label });
-        } catch (e) { console.error("Failed to sync pasted page:", node.slug, e); }
+          // 1. Fetch source content
+          const sourceData = await api.get<{ content?: string }>(`/pages/content?slug=${sourceNode.slug}&workspace=${workspaceSlug}`);
+          const content = sourceData.content || "";
+
+          // 2. Create destination entry
+          await api.post(`/sidebar/page?workspace=${workspaceSlug}`, { 
+            slug: newNode.slug, 
+            label: newNode.label 
+          });
+
+          // 3. Transfer content
+          await api.post(`/content/save`, {
+            slug: newNode.slug,
+            field: 'content',
+            newValue: content,
+            workspace: workspaceSlug,
+            block_id: 'content'
+          });
+        } catch (e) { 
+          console.error("Failed to sync/clone pasted page:", newNode.slug, e); 
+        }
       }
-      if (node.children) {
-        for (const child of node.children) await syncPastedPages(child);
+      
+      if (newNode.children && sourceNode.children) {
+        // Folders: Recursively sync children
+        for (let i = 0; i < newNode.children.length; i++) {
+          await syncPastedPages(newNode.children[i], sourceNode.children[i]);
+        }
+      } else if (newNode.type === 'category' && newNode.slug === undefined) {
+        // If it's a new folder, we still need to make sure the folder structure exists if the backend requires it
+        // Note: Our backend creates folders on demand when pages are saved.
       }
     };
 
-    await syncPastedPages(newNode);
-    addToast('success', `Pasted ${newNode.type === 'category' ? 'folder' : 'page'} "${newNode.label}"`);
+    await syncPastedPages(newNode, clipboard);
+    addToast('success', `Pasted ${newNode.type === 'category' ? 'folder' : 'page'} "${newNode.label}" with content`);
   };
 
   const handleDuplicate = async (node: SidebarNode) => {
