@@ -229,6 +229,16 @@
               "type": "doc",
               "id": "system-architecture-diagram-design/authentication/system-flow-diagram",
               "label": "System flow diagram"
+            },
+            {
+              "type": "doc",
+              "id": "system-architecture-diagram-design/authentication/backend-design-diagram",
+              "label": "Backend Design diagram"
+            },
+            {
+              "type": "doc",
+              "id": "system-architecture-diagram-design/authentication/frontend-component-optimization-and-component-integration-design",
+              "label": "Frontend component optimization  and component integration design"
             }
           ]
         }
