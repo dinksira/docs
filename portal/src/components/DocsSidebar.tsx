@@ -2,22 +2,23 @@
 
 import React, { useEffect, useState, useRef } from 'react';
 import { 
-  Plus, 
   ChevronRight, 
-  ChevronDown, 
   FileText, 
   Folder, 
   Trash2, 
   GripVertical,
   Search,
   Zap,
-  MoreVertical,
   Check,
   X,
   FolderPlus,
   FilePlus2,
   PanelLeftClose,
-  PanelLeftOpen
+  PanelLeftOpen,
+  Pencil,
+  Copy,
+  Link2,
+  ExternalLink
 } from 'lucide-react';
 import { 
   DndContext, 
@@ -114,6 +115,28 @@ export default function DocsSidebar({
   const sidebarRef = useRef<HTMLDivElement>(null);
   const { addToast } = useToasts();
   const pendingNodeIds = useRef<Set<string>>(new Set());
+  const [contextMenu, setContextMenu] = useState<{
+    x: number;
+    y: number;
+    node: SidebarNode;
+  } | null>(null);
+
+  // Close context menu on any click or scroll
+  useEffect(() => {
+    const dismiss = () => setContextMenu(null);
+    window.addEventListener('click', dismiss);
+    window.addEventListener('scroll', dismiss, true);
+    return () => {
+      window.removeEventListener('click', dismiss);
+      window.removeEventListener('scroll', dismiss, true);
+    };
+  }, []);
+
+  const handleCopySlug = (slug?: string) => {
+    if (!slug) return;
+    navigator.clipboard.writeText(slug);
+    addToast('success', 'Path copied to clipboard');
+  };
 
   useEffect(() => {
     const savedWidth = localStorage.getItem('sidebarWidth');
@@ -587,6 +610,7 @@ export default function DocsSidebar({
                      setEditingId(null);
                    }}
                    onSaveEdit={(id) => handleRename(id)}
+                   onContextMenu={setContextMenu}
                    isRoot={true}
                  />
                ))}
@@ -622,6 +646,144 @@ export default function DocsSidebar({
         }
       `}</style>
     </div>
+
+    {/* ============================================================ */}
+    {/* CONTEXT MENU (Right-Click)                                   */}
+    {/* Atomic Level: Molecule (uses Atom-level icons + text)        */}
+    {/* ============================================================ */}
+    {contextMenu && (
+      <div
+        className="fixed inset-0 z-[999]"
+        onClick={(e) => { e.stopPropagation(); setContextMenu(null); }}
+        onContextMenu={(e) => { e.preventDefault(); setContextMenu(null); }}
+      >
+        <div
+          className="context-menu fixed"
+          style={{
+            top: Math.min(contextMenu.y, window.innerHeight - 320),
+            left: Math.min(contextMenu.x, window.innerWidth - 240),
+          }}
+          onClick={(e) => e.stopPropagation()}
+        >
+          {/* Top Icon Bar — Quick Actions (Windows 11 style) */}
+          <div className="context-menu-icon-bar">
+            <button
+              className="context-menu-icon-btn"
+              title="Rename"
+              onClick={() => {
+                setEditingId(contextMenu.node.id);
+                setEditValue(contextMenu.node.label);
+                setContextMenu(null);
+              }}
+            >
+              <Pencil size={15} />
+            </button>
+            <button
+              className="context-menu-icon-btn"
+              title="Copy Path"
+              onClick={() => {
+                handleCopySlug(contextMenu.node.slug);
+                setContextMenu(null);
+              }}
+            >
+              <Copy size={15} />
+            </button>
+            <button
+              className="context-menu-icon-btn danger"
+              title="Delete"
+              onClick={() => {
+                const node = contextMenu.node;
+                requestDeleteNode(node.id, node.slug, node.label, node.type);
+                setContextMenu(null);
+              }}
+            >
+              <Trash2 size={15} />
+            </button>
+          </div>
+
+          {/* Main Menu Items */}
+          {contextMenu.node.type === 'category' && (
+            <>
+              <div
+                className="context-menu-item"
+                onClick={() => {
+                  handleAddNode(contextMenu.node.id, 'page');
+                  setContextMenu(null);
+                }}
+              >
+                <FilePlus2 size={16} className="text-[var(--text-muted)]" />
+                <span>New Page</span>
+              </div>
+              <div
+                className="context-menu-item"
+                onClick={() => {
+                  handleAddNode(contextMenu.node.id, 'category');
+                  setContextMenu(null);
+                }}
+              >
+                <FolderPlus size={16} className="text-[var(--text-muted)]" />
+                <span>New Group</span>
+              </div>
+              <div className="context-menu-divider" />
+            </>
+          )}
+
+          <div
+            className="context-menu-item"
+            onClick={() => {
+              setEditingId(contextMenu.node.id);
+              setEditValue(contextMenu.node.label);
+              setContextMenu(null);
+            }}
+          >
+            <Pencil size={16} className="text-[var(--text-muted)]" />
+            <span>Rename</span>
+            <span className="shortcut">F2</span>
+          </div>
+
+          {contextMenu.node.type === 'page' && contextMenu.node.slug && (
+            <>
+              <div
+                className="context-menu-item"
+                onClick={() => {
+                  handleCopySlug(contextMenu.node.slug);
+                  setContextMenu(null);
+                }}
+              >
+                <Link2 size={16} className="text-[var(--text-muted)]" />
+                <span>Copy Path</span>
+                <span className="shortcut">Ctrl+Shift+C</span>
+              </div>
+              <div
+                className="context-menu-item"
+                onClick={() => {
+                  window.open(`/docs/${contextMenu.node.slug}`, '_blank');
+                  setContextMenu(null);
+                }}
+              >
+                <ExternalLink size={16} className="text-[var(--text-muted)]" />
+                <span>Open in New Tab</span>
+              </div>
+            </>
+          )}
+
+          <div className="context-menu-divider" />
+
+          <div
+            className="context-menu-item danger"
+            onClick={() => {
+              const node = contextMenu.node;
+              requestDeleteNode(node.id, node.slug, node.label, node.type);
+              setContextMenu(null);
+            }}
+          >
+            <Trash2 size={16} />
+            <span>Delete</span>
+            <span className="shortcut">Del</span>
+          </div>
+        </div>
+      </div>
+    )}
     </>
   );
 }
@@ -639,6 +801,7 @@ interface SortableSidebarNodeProps {
   setEditValue: (v: string) => void;
   onCancelEdit: () => void;
   onSaveEdit: (id: string) => void;
+  onContextMenu: (menu: { x: number; y: number; node: SidebarNode } | null) => void;
   level?: number;
   isRoot?: boolean;
 }
@@ -656,6 +819,7 @@ function SortableSidebarNode({
   setEditValue,
   onCancelEdit,
   onSaveEdit,
+  onContextMenu: onCtxMenu,
   level = 0,
   isRoot = false
 }: SortableSidebarNodeProps) {
@@ -728,6 +892,11 @@ function SortableSidebarNode({
         `}
         style={isActive ? { backgroundColor: 'rgba(23, 74, 95, 0.08)', color: '#174A5F' } : {}}
         onClick={() => node.type === 'page' ? onNavigate(node.slug!) : onToggleNode(node.id)}
+        onContextMenu={(e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          onCtxMenu({ x: e.clientX, y: e.clientY, node });
+        }}
       >
         {/* Active Indicator - prominent bar */}
         {isActive && <div className="absolute left-[-2px] top-1/2 -translate-y-1/2 w-1 h-5 bg-[var(--accent-primary)] rounded-r-full shadow-[0_0_8px_var(--accent-primary)]" />}
@@ -771,44 +940,6 @@ function SortableSidebarNode({
             </span>
           )}
         </div>
-
-        {/* Dynamic Action Menu */}
-        {!isEditing && (
-          <div className="opacity-0 group-hover/item:opacity-100 flex items-center gap-1 transition-all duration-300 scale-95 group-hover/item:scale-100 shrink-0" onClick={e => e.stopPropagation()}>
-             {node.type === 'category' && (
-               <>
-                 <button 
-                  onClick={() => onAdd(node.id, 'page')} 
-                  className="w-7 h-7 flex items-center justify-center bg-white border border-slate-100 rounded-lg shadow-sm text-slate-400 hover:text-[var(--accent-primary)] hover:border-[var(--accent-primary)]/20 transition-all"
-                  title="Add Page"
-                 >
-                   <Plus size={14} />
-                 </button>
-                 <button 
-                  onClick={() => onAdd(node.id, 'category')} 
-                  className="w-7 h-7 flex items-center justify-center bg-white border border-slate-100 rounded-lg shadow-sm text-slate-400 hover:text-[var(--accent-primary)] hover:border-[var(--accent-primary)]/20 transition-all"
-                  title="Add Group"
-                 >
-                   <FolderPlus size={14} />
-                 </button>
-               </>
-             )}
-             <button 
-              onClick={() => onStartEdit(node.id, node.label)} 
-              className="w-7 h-7 flex items-center justify-center bg-white border border-slate-100 rounded-lg shadow-sm text-slate-400 hover:text-blue-500 hover:border-blue-100 transition-all"
-              title="Rename"
-             >
-               <MoreVertical size={14} />
-             </button>
-             <button 
-              onClick={() => onDelete(node.id, node.slug)} 
-              className="w-7 h-7 flex items-center justify-center bg-white border border-slate-100 rounded-lg shadow-sm text-slate-400 hover:text-rose-500 hover:border-rose-100 transition-all"
-              title="Delete"
-             >
-               <Trash2 size={14} />
-             </button>
-          </div>
-        )}
       </div>
 
       {/* Progressive Children Rendering */}
@@ -831,6 +962,7 @@ function SortableSidebarNode({
                    setEditValue={setEditValue}
                    onCancelEdit={onCancelEdit}
                    onSaveEdit={onSaveEdit}
+                   onContextMenu={onCtxMenu}
                    level={level + 1}
                  />
                ))}
