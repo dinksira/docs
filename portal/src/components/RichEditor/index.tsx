@@ -16,6 +16,8 @@ import Youtube from "@tiptap/extension-youtube";
 import Link from "@tiptap/extension-link";
 import CodeBlockLowlight from "@tiptap/extension-code-block-lowlight";
 import { common, createLowlight } from "lowlight";
+import { ReactNodeViewRenderer } from "@tiptap/react";
+import CodeBlockComponent from "./CodeBlockComponent";
 import FloatingToolbar from "./FloatingToolbar";
 import TurndownService from "turndown";
 import { marked } from "marked";
@@ -147,7 +149,11 @@ export default function RichEditor({
       ResizableVideo,
       Youtube.configure({ controls: true, nocookie: true }),
       Link.configure({ openOnClick: false }),
-      CodeBlockLowlight.configure({ lowlight }),
+      CodeBlockLowlight.extend({
+        addNodeView() {
+          return ReactNodeViewRenderer(CodeBlockComponent)
+        },
+      }).configure({ lowlight }),
     ],
     content: marked.parse(draftStore.getPage(slug, workspace) || content) as string,
     editable: false,
