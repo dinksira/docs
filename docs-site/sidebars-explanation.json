@@ -212,6 +212,27 @@
           ]
         }
       ]
+    },
+    {
+      "type": "category",
+      "label": "System Architecture Diagram Design",
+      "collapsible": true,
+      "collapsed": false,
+      "items": [
+        {
+          "type": "category",
+          "label": "Authentication",
+          "collapsible": true,
+          "collapsed": false,
+          "items": [
+            {
+              "type": "doc",
+              "id": "system-architecture-diagram-design/authentication/system-flow-diagram",
+              "label": "System flow diagram"
+            }
+          ]
+        }
+      ]
     }
   ]
 }
