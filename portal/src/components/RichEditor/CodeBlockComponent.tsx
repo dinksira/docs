@@ -17,8 +17,8 @@ export default function CodeBlockComponent({ node, updateAttributes, extension }
   };
 
   return (
-    <NodeViewWrapper className="code-block-wrapper group/code relative">
-      <div className="code-block-header absolute top-0 right-0 z-10 flex items-center gap-2 p-2 opacity-0 group-hover/code:opacity-100 transition-opacity">
+    <NodeViewWrapper className="code-block-wrapper group relative">
+      <div className="code-block-header absolute top-3 right-3 z-50 flex items-center gap-2 opacity-40 group-hover:opacity-100 transition-all duration-300">
         <button
           onClick={handleCopy}
           className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-[10px] font-bold uppercase tracking-wider transition-all shadow-lg backdrop-blur-md
