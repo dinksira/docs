@@ -55,6 +55,11 @@ const sidebars: SidebarsConfig = {
         "type": "doc",
         "id": "overview/project-analysis",
         "label": "Project Analysis"
+      },
+      {
+        "type": "doc",
+        "id": "introduction",
+        "label": "Introduction"
       }
     ]
   },
@@ -206,11 +211,6 @@ const sidebars: SidebarsConfig = {
     "collapsible": true,
     "collapsed": false,
     "items": [
-      {
-        "type": "doc",
-        "id": "coding-standards/standards-intro",
-        "label": "Standards Intro"
-      },
       {
         "type": "doc",
         "id": "development-standards/coding-standards",
