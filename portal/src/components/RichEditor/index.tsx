@@ -248,9 +248,15 @@ export default function RichEditor({
     // RULE: Draft always wins over server content
     const finalMarkdown = draftStore.getPage(slug, workspace) || content;
     const newHtml = marked.parse(finalMarkdown) as string;
+    const currentHtml = editor.getHTML();
     
+    console.log(`[RichEditor] Loading slug: ${slug}`);
+    console.log(`[RichEditor] Raw Markdown length: ${finalMarkdown.length}`);
+    console.log(`[RichEditor] Generated HTML:`, newHtml);
+
     // Only update if the content is actually different to avoid cursor flickering
-    if (editor.getHTML() !== newHtml) {
+    if (currentHtml !== newHtml) {
+      console.log(`[RichEditor] Content mismatch! Updating editor content...`);
       editor.commands.setContent(newHtml, { emitUpdate: false }); 
     }
 
