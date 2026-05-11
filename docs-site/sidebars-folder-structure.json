@@ -514,6 +514,27 @@
           "collapsed": false,
           "items": [
             {
+              "type": "category",
+              "label": "api",
+              "collapsible": true,
+              "collapsed": false,
+              "items": [
+                {
+                  "type": "category",
+                  "label": "v1",
+                  "collapsible": true,
+                  "collapsed": false,
+                  "items": [
+                    {
+                      "type": "doc",
+                      "id": "deltalabsbackend/app/api/v1/authpy",
+                      "label": "auth.py"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
               "type": "doc",
               "id": "deltalabsbackend/app/mainpy",
               "label": "main.py"
