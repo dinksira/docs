@@ -36,6 +36,19 @@
                   "items": [
                     {
                       "type": "category",
+                      "label": "login",
+                      "collapsible": true,
+                      "collapsed": false,
+                      "items": [
+                        {
+                          "type": "doc",
+                          "id": "deltalabsfrontend/src/app/public/login/pagetsx",
+                          "label": "page.tsx"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "category",
                       "label": "signup",
                       "collapsible": true,
                       "collapsed": false,
