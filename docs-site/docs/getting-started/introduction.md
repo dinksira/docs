@@ -6,7 +6,7 @@ id: getting-started/introduction
 
 # Welcome to Delta Labs [Documentation](/overview/project-analysis)
 
-**Official documentation for Delta Labs: coding standards, design system, architecture, API reference, and development guidelines.**
+**Official documentation for Delta Labs: coding standards, design system, architecture, API reference, and development** [**guidelines**](/architecture/architecture-intro)**.**
 
 ## 📚Inside
 
