@@ -86,6 +86,19 @@
                       "items": [
                         {
                           "type": "category",
+                          "label": "data_sources",
+                          "collapsible": true,
+                          "collapsed": false,
+                          "items": [
+                            {
+                              "type": "doc",
+                              "id": "deltalabs-mobile/lib/features/auth/data/datasources/authremotedatasourcedart",
+                              "label": "auth_remote_data_source.dart"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "category",
                           "label": "models",
                           "collapsible": true,
                           "collapsed": false,
