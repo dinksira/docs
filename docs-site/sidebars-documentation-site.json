@@ -1,0 +1,27 @@
+{
+  "sidebar_documentation-site": [
+    {
+      "type": "category",
+      "label": "General  system",
+      "collapsible": true,
+      "collapsed": false,
+      "items": [
+        {
+          "type": "doc",
+          "id": "system-architecture",
+          "label": "System Architecture"
+        },
+        {
+          "type": "doc",
+          "id": "coding-standards",
+          "label": "Coding Standards"
+        },
+        {
+          "type": "doc",
+          "id": "design-system",
+          "label": "Design System"
+        }
+      ]
+    }
+  ]
+}
