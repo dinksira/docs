@@ -1,9 +1,32 @@
 ---
-title: Textarea.tsx
-sidebar_label: Textarea.tsx
+title: Ws:Folder Structure:Textareatsx
+sidebar_label: Ws:Folder Structure:Textareatsx
 id: textareatsx
 ---
 
-# Textarea.tsx
+```typescriptreact
+/** ################################ COMPONENT ############################# */
+/** Main exported component logic for this file. */
+/** Shared multiline input primitive for Delta Labs UI (matches Input tokens). */
+import { forwardRef, type TextareaHTMLAttributes } from "react";
 
-Start writing here...
+import { cx } from "@/components/theme/utils";
+
+export type TextareaProps = TextareaHTMLAttributes<HTMLTextAreaElement>;
+
+export const Textarea = forwardRef<HTMLTextAreaElement, Readonly<TextareaProps>>(
+  function Textarea({ className, ...props }, ref) {
+    return (
+      <textarea
+        ref={ref}
+        className={cx(
+          "w-full px-3 py-2 text-sm text-text-primary bg-surface-default border border-border-default rounded-md shadow-sm outline-none transition-colors duration-150 placeholder:text-text-secondary focus:border-primary-400 focus:ring-2 focus:ring-primary-200 disabled:cursor-not-allowed disabled:opacity-60",
+          className,
+        )}
+        {...props}
+      />
+    );
+  },
+);
+/** ################################ /COMPONENT ############################# */
+```
