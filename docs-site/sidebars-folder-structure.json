@@ -410,6 +410,11 @@
                   "type": "doc",
                   "id": "deltalabsfrontend/src/lib/apiclientts",
                   "label": "apiClient.ts"
+                },
+                {
+                  "type": "doc",
+                  "id": "deltalabsfrontend/src/lib/apiclienttypests",
+                  "label": "apiClient.types.ts"
                 }
               ]
             }
