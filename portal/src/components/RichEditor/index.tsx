@@ -251,7 +251,7 @@ export default function RichEditor({
     
     // Only update if the content is actually different to avoid cursor flickering
     if (editor.getHTML() !== newHtml) {
-      editor.commands.setContent(newHtml, false); // false = don't emit update event
+      editor.commands.setContent(newHtml, { emitUpdate: false }); 
     }
 
     originalMarkdown.current = content;
