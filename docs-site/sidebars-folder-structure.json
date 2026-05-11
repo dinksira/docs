@@ -508,9 +508,17 @@
       "collapsed": false,
       "items": [
         {
-          "type": "doc",
-          "id": "page",
-          "label": "page"
+          "type": "category",
+          "label": "app",
+          "collapsible": true,
+          "collapsed": false,
+          "items": [
+            {
+              "type": "doc",
+              "id": "deltalabsbackend/app/mainpy",
+              "label": "main.py"
+            }
+          ]
         },
         {
           "type": "doc",
