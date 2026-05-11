@@ -171,6 +171,27 @@
                           ]
                         }
                       ]
+                    },
+                    {
+                      "type": "category",
+                      "label": "presentation",
+                      "collapsible": true,
+                      "collapsed": false,
+                      "items": [
+                        {
+                          "type": "category",
+                          "label": "pages",
+                          "collapsible": true,
+                          "collapsed": false,
+                          "items": [
+                            {
+                              "type": "doc",
+                              "id": "deltalabs-mobile/lib/features/auth/presentation/pages/forgototppagedart",
+                              "label": "forgot_otp_page.dart"
+                            }
+                          ]
+                        }
+                      ]
                     }
                   ]
                 }
