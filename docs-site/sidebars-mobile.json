@@ -1,0 +1,25 @@
+{
+  "sidebar_mobile": [
+    {
+      "type": "category",
+      "label": "deltalabs-mobile",
+      "collapsible": true,
+      "collapsed": false,
+      "items": [
+        {
+          "type": "category",
+          "label": "lib",
+          "collapsible": true,
+          "collapsed": false,
+          "items": [
+            {
+              "type": "doc",
+              "id": "deltalabs-mobile/lib/bootstrapdart",
+              "label": "bootstrap.dart"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
