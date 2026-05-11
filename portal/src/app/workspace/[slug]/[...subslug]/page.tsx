@@ -92,7 +92,8 @@ export default function WorkspacePageContent() {
       };
       setPage(virtualPage);
       setChangeMap({});
-      if (loadingSlugRef.current === cacheKey) return; // We're good for now
+      // NOTE: Do NOT return here — always proceed to fetch from server
+      // so that we get the real content if it exists on the backend.
     }
 
     // 3. Always try to fetch fresh from server in background
