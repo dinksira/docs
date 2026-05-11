@@ -4,9 +4,9 @@ sidebar_label: Introduction
 id: getting-started/introduction
 ---
 
-# Welcome to Delta Labs [Documentation](/overview/project-analysis)
+# Welcome to Delta Labs Documentation
 
-**Official documentation for Delta Labs: coding standards, design system, architecture, API reference, and development** [**guidelines**](/architecture/architecture-intro)**.**
+**Official documentation for Delta Labs: coding standards, design system, architecture, API reference, and development** **guidelines.**
 
 ## 📚Inside
 
