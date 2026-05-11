@@ -8,6 +8,8 @@ class RevertRequest(BaseModel):
     is_sidebar: Optional[bool] = False
 
 class ContentSaveRequest(BaseModel):
+    model_config = {"extra": "ignore"}
+
     slug: str
     content: Optional[str] = None
     newValue: Optional[str] = None  # Added for compatibility with frontend payload
