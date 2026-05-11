@@ -65,6 +65,43 @@
                   ]
                 }
               ]
+            },
+            {
+              "type": "category",
+              "label": "features",
+              "collapsible": true,
+              "collapsed": false,
+              "items": [
+                {
+                  "type": "category",
+                  "label": "auth",
+                  "collapsible": true,
+                  "collapsed": false,
+                  "items": [
+                    {
+                      "type": "category",
+                      "label": "data",
+                      "collapsible": true,
+                      "collapsed": false,
+                      "items": [
+                        {
+                          "type": "category",
+                          "label": "models",
+                          "collapsible": true,
+                          "collapsed": false,
+                          "items": [
+                            {
+                              "type": "doc",
+                              "id": "deltalabs-mobile/lib/features/auth/data/models/usermodeldart",
+                              "label": "user_model.dart"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
             }
           ]
         }
