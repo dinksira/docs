@@ -22,6 +22,19 @@
           "label": "Design System"
         }
       ]
+    },
+    {
+      "type": "category",
+      "label": "Frontend",
+      "collapsible": true,
+      "collapsed": false,
+      "items": [
+        {
+          "type": "doc",
+          "id": "frontend/rich-editor",
+          "label": "Rich Editor"
+        }
+      ]
     }
   ]
 }
