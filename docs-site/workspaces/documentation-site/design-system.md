@@ -1,6 +1,6 @@
 ---
-title: Design System
-sidebar_label: Design System
+title: Ws:Documentation Site:Design System
+sidebar_label: Ws:Documentation Site:Design System
 id: design-system
 ---
 
@@ -37,8 +37,8 @@ The system uses a refined palette centered around \*\*SaaS Blue\*\*.
 **\- Visuals:** Elevated white background with a subtle border and premium multi-shadow.  
 **\- Behavior:** Translates up by \`-2px\` on hover with an expanded shadow to simulate physical lift.
 
-**3.2 Action Buttons  
-**The system features specialized buttons with unique identities:
+\*\*3.2 Action Buttons  
+\*\*The system features specialized buttons with unique identities:
 
 <table style="min-width: 100px;"><colgroup><col style="min-width: 25px;"><col style="min-width: 25px;"><col style="min-width: 25px;"><col style="min-width: 25px;"></colgroup><tbody><tr><th colspan="1" rowspan="1"><p>Name</p></th><th colspan="1" rowspan="1"><p>Class</p></th><th colspan="1" rowspan="1"><p>Style</p></th><th colspan="1" rowspan="1"><p>Icon Behavior</p></th></tr><tr><td colspan="1" rowspan="1"><p><strong>History Trigger</strong></p></td><td colspan="1" rowspan="1"><p>`.history-trigger-btn`</p></td><td colspan="1" rowspan="1"><p>Emerald Gradient</p></td><td colspan="1" rowspan="1"><p>Icon rotates -180° on hover.</p></td></tr><tr><td colspan="1" rowspan="1"><p><strong>View Live</strong></p></td><td colspan="1" rowspan="1"><p>`.view-live-btn`</p></td><td colspan="1" rowspan="1"><p>Electric Blue Gradient</p></td><td colspan="1" rowspan="1"><p>Icon slides diagonally (top-right).</p></td></tr><tr><td colspan="1" rowspan="1"><p><strong>Logout</strong></p></td><td colspan="1" rowspan="1"><p>`.logout-btn`</p></td><td colspan="1" rowspan="1"><p>Crimson Blaze Gradient</p></td><td colspan="1" rowspan="1"><p>Icon slides to the right.</p></td></tr></tbody></table>
 
