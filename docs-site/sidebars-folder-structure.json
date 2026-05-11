@@ -562,6 +562,16 @@
                   "type": "doc",
                   "id": "deltalabsbackend/app/infra/databasepy",
                   "label": "database.py"
+                },
+                {
+                  "type": "doc",
+                  "id": "deltalabsbackend/app/infra/httpclientpy",
+                  "label": "http_client.py"
+                },
+                {
+                  "type": "doc",
+                  "id": "deltalabsbackend/app/infra/redisclientpy",
+                  "label": "redis_client.py"
                 }
               ]
             },
