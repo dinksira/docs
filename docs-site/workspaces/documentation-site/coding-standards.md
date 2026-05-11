@@ -1,6 +1,6 @@
 ---
-title: Coding Standards
-sidebar_label: Coding Standards
+title: Ws:Documentation Site:Coding Standards
+sidebar_label: Ws:Documentation Site:Coding Standards
 id: coding-standards
 ---
 
@@ -28,8 +28,8 @@ This document defines the engineering standards, architectural patterns, and bes
 \- \`app/models/\`: Database document schemas.
 
 **2.2 Route Pattern**  
-All routes should follow a standard dependency injection pattern:  
-  
+All routes should follow a standard dependency injection pattern:
+
 \`\`\`python  
 @router.post("/save")  
 async def save\_content(  
@@ -73,8 +73,8 @@ private static instance: DraftStore;
 export const draftStore = DraftStore.getInstance();  
 \`\`\`
 
-**3.4 API Communication**  
-  
+**3.4 API Communication**
+
 Always use the centralized \`api\` client (\`src/lib/api.ts\`) which handles:  
 \- Authorization header attachment.  
 \- Automatic 401 redirect to \`/login\`.  
