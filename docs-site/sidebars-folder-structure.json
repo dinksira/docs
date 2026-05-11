@@ -7,6 +7,11 @@
       "collapsed": false,
       "items": [
         {
+          "type": "doc",
+          "id": "deltalabsfrontend/general-folder-structure-explanation",
+          "label": "General Folder Structure Explanation"
+        },
+        {
           "type": "category",
           "label": "src",
           "collapsible": true,
@@ -22,6 +27,118 @@
                   "type": "doc",
                   "id": "layouttsx",
                   "label": "layout.tsx"
+                }
+              ]
+            },
+            {
+              "type": "category",
+              "label": "components",
+              "collapsible": true,
+              "collapsed": false,
+              "items": [
+                {
+                  "type": "category",
+                  "label": "theme",
+                  "collapsible": true,
+                  "collapsed": false,
+                  "items": [
+                    {
+                      "type": "doc",
+                      "id": "utilsts",
+                      "label": "utils.ts"
+                    },
+                    {
+                      "type": "doc",
+                      "id": "buttontsx",
+                      "label": "Button.tsx"
+                    },
+                    {
+                      "type": "doc",
+                      "id": "cardtsx",
+                      "label": "Card.tsx"
+                    },
+                    {
+                      "type": "doc",
+                      "id": "checkboxtsx",
+                      "label": "Checkbox.tsx"
+                    },
+                    {
+                      "type": "doc",
+                      "id": "dialogtsx",
+                      "label": "Dialog.tsx"
+                    },
+                    {
+                      "type": "doc",
+                      "id": "fieldtsx",
+                      "label": "Field.tsx"
+                    },
+                    {
+                      "type": "doc",
+                      "id": "inputtsx",
+                      "label": "Input.tsx"
+                    },
+                    {
+                      "type": "doc",
+                      "id": "radiogrouptsx",
+                      "label": "RadioGroup.tsx"
+                    },
+                    {
+                      "type": "doc",
+                      "id": "searchinputtsx",
+                      "label": "SearchInput.tsx"
+                    },
+                    {
+                      "type": "doc",
+                      "id": "selecttsx",
+                      "label": "Select.tsx"
+                    },
+                    {
+                      "type": "doc",
+                      "id": "statusbannertsx",
+                      "label": "StatusBanner.tsx"
+                    },
+                    {
+                      "type": "doc",
+                      "id": "tabletsx",
+                      "label": "Table.tsx"
+                    },
+                    {
+                      "type": "doc",
+                      "id": "textareatsx",
+                      "label": "Textarea.tsx"
+                    },
+                    {
+                      "type": "doc",
+                      "id": "typographytsx",
+                      "label": "Typography.tsx"
+                    }
+                  ]
+                },
+                {
+                  "type": "category",
+                  "label": "navigation",
+                  "collapsible": true,
+                  "collapsed": false,
+                  "items": [
+                    {
+                      "type": "doc",
+                      "id": "topnavtsx",
+                      "label": "TopNav.tsx"
+                    }
+                  ]
+                },
+                {
+                  "type": "category",
+                  "label": "system",
+                  "collapsible": true,
+                  "collapsed": false,
+                  "items": [
+                    {
+                      "type": "doc",
+                      "id": "globalauthpendingbartsx",
+                      "label": "GlobalAuthPendingBar.tsx"
+                    }
+                  ]
                 }
               ]
             },
@@ -127,6 +244,21 @@
                           "type": "doc",
                           "id": "coursehubviewtsx",
                           "label": "CourseHubView.tsx"
+                        },
+                        {
+                          "type": "doc",
+                          "id": "courselearningviewtsx",
+                          "label": "CourseLearningView.tsx"
+                        },
+                        {
+                          "type": "doc",
+                          "id": "enrolledcoursespageviewtsx",
+                          "label": "EnrolledCoursesPageView.tsx"
+                        },
+                        {
+                          "type": "doc",
+                          "id": "refundrequestviewtsx",
+                          "label": "RefundRequestView.tsx"
                         }
                       ]
                     }
@@ -249,120 +381,26 @@
                   ]
                 }
               ]
-            },
-            {
-              "type": "category",
-              "label": "components",
-              "collapsible": true,
-              "collapsed": false,
-              "items": [
-                {
-                  "type": "category",
-                  "label": "theme",
-                  "collapsible": true,
-                  "collapsed": false,
-                  "items": [
-                    {
-                      "type": "doc",
-                      "id": "utilsts",
-                      "label": "utils.ts"
-                    },
-                    {
-                      "type": "doc",
-                      "id": "buttontsx",
-                      "label": "Button.tsx"
-                    },
-                    {
-                      "type": "doc",
-                      "id": "cardtsx",
-                      "label": "Card.tsx"
-                    },
-                    {
-                      "type": "doc",
-                      "id": "checkboxtsx",
-                      "label": "Checkbox.tsx"
-                    },
-                    {
-                      "type": "doc",
-                      "id": "dialogtsx",
-                      "label": "Dialog.tsx"
-                    },
-                    {
-                      "type": "doc",
-                      "id": "fieldtsx",
-                      "label": "Field.tsx"
-                    },
-                    {
-                      "type": "doc",
-                      "id": "inputtsx",
-                      "label": "Input.tsx"
-                    },
-                    {
-                      "type": "doc",
-                      "id": "radiogrouptsx",
-                      "label": "RadioGroup.tsx"
-                    },
-                    {
-                      "type": "doc",
-                      "id": "searchinputtsx",
-                      "label": "SearchInput.tsx"
-                    },
-                    {
-                      "type": "doc",
-                      "id": "selecttsx",
-                      "label": "Select.tsx"
-                    },
-                    {
-                      "type": "doc",
-                      "id": "statusbannertsx",
-                      "label": "StatusBanner.tsx"
-                    },
-                    {
-                      "type": "doc",
-                      "id": "tabletsx",
-                      "label": "Table.tsx"
-                    },
-                    {
-                      "type": "doc",
-                      "id": "textareatsx",
-                      "label": "Textarea.tsx"
-                    },
-                    {
-                      "type": "doc",
-                      "id": "typographytsx",
-                      "label": "Typography.tsx"
-                    }
-                  ]
-                },
-                {
-                  "type": "category",
-                  "label": "navigation",
-                  "collapsible": true,
-                  "collapsed": false,
-                  "items": [
-                    {
-                      "type": "doc",
-                      "id": "topnavtsx",
-                      "label": "TopNav.tsx"
-                    }
-                  ]
-                },
-                {
-                  "type": "category",
-                  "label": "system",
-                  "collapsible": true,
-                  "collapsed": false,
-                  "items": [
-                    {
-                      "type": "doc",
-                      "id": "globalauthpendingbartsx",
-                      "label": "GlobalAuthPendingBar.tsx"
-                    }
-                  ]
-                }
-              ]
             }
           ]
+        }
+      ]
+    },
+    {
+      "type": "category",
+      "label": "Deltalabs_Backend",
+      "collapsible": true,
+      "collapsed": false,
+      "items": [
+        {
+          "type": "doc",
+          "id": "page",
+          "label": "page"
+        },
+        {
+          "type": "doc",
+          "id": "deltalabsbackend/backend-general-folder-structure-explanation",
+          "label": "Backend General Folder Structure Explanation"
         }
       ]
     }
