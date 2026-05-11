@@ -553,6 +553,19 @@
               ]
             },
             {
+              "type": "category",
+              "label": "infra",
+              "collapsible": true,
+              "collapsed": false,
+              "items": [
+                {
+                  "type": "doc",
+                  "id": "deltalabsbackend/app/infra/databasepy",
+                  "label": "database.py"
+                }
+              ]
+            },
+            {
               "type": "doc",
               "id": "deltalabsbackend/app/mainpy",
               "label": "main.py"
