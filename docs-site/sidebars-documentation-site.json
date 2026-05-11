@@ -45,6 +45,34 @@
           "label": "Atomic Design Methodology"
         }
       ]
+    },
+    {
+      "type": "category",
+      "label": "Back End",
+      "collapsible": true,
+      "collapsed": false,
+      "items": [
+        {
+          "type": "doc",
+          "id": "back-end/auto-provisioning",
+          "label": "Auto-Provisioning"
+        },
+        {
+          "type": "doc",
+          "id": "back-end/database-architecture",
+          "label": "Database Architecture"
+        },
+        {
+          "type": "doc",
+          "id": "back-end/github-integration-client",
+          "label": "GitHub Integration Client"
+        },
+        {
+          "type": "doc",
+          "id": "back-end/the-local-first-rule",
+          "label": "The Local-First Rule"
+        }
+      ]
     }
   ]
 }
