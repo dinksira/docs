@@ -415,6 +415,51 @@
                   "type": "doc",
                   "id": "deltalabsfrontend/src/lib/apiclienttypests",
                   "label": "apiClient.types.ts"
+                },
+                {
+                  "type": "doc",
+                  "id": "deltalabsfrontend/src/lib/authdisplayts",
+                  "label": "authDisplay.ts"
+                },
+                {
+                  "type": "doc",
+                  "id": "deltalabsfrontend/src/lib/autherrorsts",
+                  "label": "authErrors.ts"
+                },
+                {
+                  "type": "doc",
+                  "id": "deltalabsfrontend/src/lib/authguardsts",
+                  "label": "authGuards.ts"
+                },
+                {
+                  "type": "doc",
+                  "id": "deltalabsfrontend/src/lib/authredirectts",
+                  "label": "authRedirect.ts"
+                },
+                {
+                  "type": "doc",
+                  "id": "deltalabsfrontend/src/lib/authsessionts",
+                  "label": "authSession.ts"
+                },
+                {
+                  "type": "doc",
+                  "id": "deltalabsfrontend/src/lib/configts",
+                  "label": "config.ts"
+                },
+                {
+                  "type": "doc",
+                  "id": "deltalabsfrontend/src/lib/queryclientts",
+                  "label": "queryClient.ts"
+                },
+                {
+                  "type": "doc",
+                  "id": "deltalabsfrontend/src/lib/querykeysts",
+                  "label": "queryKeys.ts"
+                },
+                {
+                  "type": "doc",
+                  "id": "deltalabsfrontend/src/lib/queryprovidertsx",
+                  "label": "QueryProvider.tsx"
                 }
               ]
             }
