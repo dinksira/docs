@@ -33,6 +33,16 @@
           "type": "doc",
           "id": "frontend/rich-editor",
           "label": "Rich Editor"
+        },
+        {
+          "type": "doc",
+          "id": "frontend/draft-state",
+          "label": "Draft State"
+        },
+        {
+          "type": "doc",
+          "id": "frontend/atomic-design-methodology",
+          "label": "Atomic Design Methodology"
         }
       ]
     }
