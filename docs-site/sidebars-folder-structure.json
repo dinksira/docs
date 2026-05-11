@@ -601,6 +601,26 @@
                       "type": "doc",
                       "id": "deltalabsbackend/app/domain/identity/repositorypy",
                       "label": "repository.py"
+                    },
+                    {
+                      "type": "doc",
+                      "id": "deltalabsbackend/app/domain/identity/schemaspy",
+                      "label": "schemas.py"
+                    },
+                    {
+                      "type": "doc",
+                      "id": "deltalabsbackend/app/domain/identity/servicepy",
+                      "label": "service.py"
+                    },
+                    {
+                      "type": "doc",
+                      "id": "deltalabsbackend/app/domain/identity/signupflowservicepy",
+                      "label": "signup_flow_service.py"
+                    },
+                    {
+                      "type": "doc",
+                      "id": "deltalabsbackend/app/domain/identity/verficationservicepy",
+                      "label": "verfication_service.py"
                     }
                   ]
                 }
