@@ -1,9 +1,27 @@
 ---
-title: authErrors.ts
-sidebar_label: authErrors.ts
+title: Autherrorsts
+sidebar_label: Autherrorsts
 id: deltalabsfrontend/src/lib/autherrorsts
 ---
 
-# authErrors.ts
+```typescript
+/** ################################ IMPORT ############################# */
+/** Imports used by this file. */
+import { ApiError } from "@/lib/apiClient";
 
-Start writing here...
+/** ################################ /IMPORT ############################# */
+
+/** ################################ COMPONENT ############################# */
+/** Main exported component logic for this file. */
+/** Maps thrown errors to user-visible auth copy. */
+export function authErrorMessage(error: unknown, fallback: string): string {
+  if (error instanceof ApiError) {
+    return error.message;
+  }
+  if (error instanceof Error && error.message) {
+    return error.message;
+  }
+  return fallback;
+}
+/** ################################ /COMPONENT ############################# */
+```
