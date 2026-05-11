@@ -10,6 +10,7 @@ import AdminNavbar from '@/components/AdminNavbar';
 import HistoryModal from '@/components/HistoryModal';
 import { ChevronRight } from 'lucide-react';
 import { pageCache } from '@/lib/pageCache';
+import { draftStore } from '@/lib/draftStore';
 
 interface PageData {
   slug: string;
