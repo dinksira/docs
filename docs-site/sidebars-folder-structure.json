@@ -535,6 +535,19 @@
               ]
             },
             {
+              "type": "category",
+              "label": "core",
+              "collapsible": true,
+              "collapsed": false,
+              "items": [
+                {
+                  "type": "doc",
+                  "id": "deltalabsbackend/app/core/ratelimitpy",
+                  "label": "rate_limit.py"
+                }
+              ]
+            },
+            {
               "type": "doc",
               "id": "deltalabsbackend/app/mainpy",
               "label": "main.py"
