@@ -21,6 +21,7 @@ interface PageEntry {
 
 interface FloatingToolbarProps {
   editor: Editor | null;
+  workspace?: string;
 }
 
 function ToolBtn({ onClick, active = false, icon: Icon, label, danger = false }: any) {
@@ -56,7 +57,7 @@ function Popup({ children }: { children: React.ReactNode }) {
   );
 }
 
-export default function FloatingToolbar({ editor }: FloatingToolbarProps) {
+export default function FloatingToolbar({ editor, workspace = 'docs' }: FloatingToolbarProps) {
   const [, forceUpdate] = useState(0);
   const [activePopup, setActivePopup] = useState<string | null>(null);
   const [linkUrl, setLinkUrl] = useState('');
@@ -106,7 +107,7 @@ export default function FloatingToolbar({ editor }: FloatingToolbarProps) {
     if (activePopup !== 'internal-link') return;
     setPagesLoading(true);
     setInternalLinkSearch('');
-    api.get<any[]>('/pages')
+    api.get<any[]>(`/pages?workspace=${workspace}`)
       .then(pages =>
         setAllPages(
           pages.map(p => ({

@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useRef, useCallback, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { useEditor, EditorContent } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import { Color } from "@tiptap/extension-color";
@@ -85,9 +86,43 @@ export default function RichEditor({
   onSaveSuccess: _onSaveSuccess,
 }: RichEditorProps) {
   const [isEditing, setIsEditing] = useState(false);
+  const router = useRouter();
   const wrapperRef = useRef<HTMLDivElement>(null);
   const originalMarkdown = useRef(content);
   const currentMarkdown = useRef(content);
+
+  // Handle portal-side navigation for internal links
+  const handleContentClick = (e: React.MouseEvent) => {
+    // If we're editing, we usually don't want to navigate on click (to allow cursor placement)
+    // But if we're NOT editing, links should work like a real wiki
+    if (isEditing) return;
+
+    const target = e.target as HTMLElement;
+    const anchor = target.closest('a');
+
+    if (anchor && anchor.getAttribute('href')) {
+      const href = anchor.getAttribute('href')!;
+      
+      // If it's a local portal link (starts with / or matches our workspace pattern)
+      if (href.startsWith('/') || href.includes('workspace=')) {
+        e.preventDefault();
+        e.stopPropagation();
+        
+        // Construct the portal URL
+        // Internal links are stored as slugs, e.g., /getting-started/intro
+        // We need to route to /workspace/[slug]/page?slug=[slug]
+        const cleanSlug = href.startsWith('/') ? href.slice(1) : href;
+        router.push(`/workspace/${workspace}?slug=${cleanSlug}`);
+      }
+    }
+  };
+
+  // Switch to edit mode on double click or if specifically requested
+  const handleDoubleClick = () => {
+    if (!isEditing) {
+      setIsEditing(true);
+    }
+  };
 
   const saveFn = useCallback(async () => {
     // We now use draftStore for centralized saving. 
@@ -319,11 +354,12 @@ export default function RichEditor({
       onKeyDown={handleKeyDown}
     >
       {/* Floating toolbar — now rendered outside the content container */}
-      {isEditing && <FloatingToolbar editor={editor} />}
+      {isEditing && <FloatingToolbar editor={editor} workspace={workspace} />}
 
       <div
         className="rich-editor-content-container"
-        onClick={handleClick}
+        onClick={handleContentClick}
+        onDoubleClick={handleDoubleClick}
         style={{ cursor: isEditing ? "text" : "pointer", position: "relative" }}
       >
         {!isEditing && (
