@@ -193,6 +193,11 @@
                               "type": "doc",
                               "id": "deltalabs-mobile/lib/features/auth/presentation/pages/forgotpasswordpagedart",
                               "label": "forgot_password_page.dart"
+                            },
+                            {
+                              "type": "doc",
+                              "id": "deltalabs-mobile/lib/features/auth/presentation/pages/splashpagedart",
+                              "label": "splash_page.dart"
                             }
                           ]
                         },
