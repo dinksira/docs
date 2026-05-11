@@ -392,6 +392,11 @@
                   "type": "doc",
                   "id": "deltalabsfrontend/src/contexts/authsessioncontexttsx",
                   "label": "AuthSession_Context.tsx"
+                },
+                {
+                  "type": "doc",
+                  "id": "deltalabsfrontend/src/contexts/themecontexttsx",
+                  "label": "Theme_Context.tsx"
                 }
               ]
             }
