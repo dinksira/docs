@@ -26,6 +26,27 @@
               "type": "doc",
               "id": "deltalabs-mobile/lib/bootstrapdart",
               "label": "bootstrap.dart"
+            },
+            {
+              "type": "category",
+              "label": "core",
+              "collapsible": true,
+              "collapsed": false,
+              "items": [
+                {
+                  "type": "category",
+                  "label": "config",
+                  "collapsible": true,
+                  "collapsed": false,
+                  "items": [
+                    {
+                      "type": "doc",
+                      "id": "deltalabs-mobile/lib/core/config/environmentdart",
+                      "label": "environment.dart"
+                    }
+                  ]
+                }
+              ]
             }
           ]
         }
