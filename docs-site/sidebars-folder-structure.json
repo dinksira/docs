@@ -27,6 +27,27 @@
                   "type": "doc",
                   "id": "layouttsx",
                   "label": "layout.tsx"
+                },
+                {
+                  "type": "category",
+                  "label": "(public)",
+                  "collapsible": true,
+                  "collapsed": false,
+                  "items": [
+                    {
+                      "type": "category",
+                      "label": "signup",
+                      "collapsible": true,
+                      "collapsed": false,
+                      "items": [
+                        {
+                          "type": "doc",
+                          "id": "deltalabsfrontend/src/app/public/signup/pagetsx",
+                          "label": "page.tsx"
+                        }
+                      ]
+                    }
+                  ]
                 }
               ]
             },
