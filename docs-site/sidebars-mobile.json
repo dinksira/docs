@@ -156,6 +156,19 @@
                               "label": "auth_repository.dart"
                             }
                           ]
+                        },
+                        {
+                          "type": "category",
+                          "label": "use_cases",
+                          "collapsible": true,
+                          "collapsed": false,
+                          "items": [
+                            {
+                              "type": "doc",
+                              "id": "deltalabs-mobile/lib/features/auth/domain/usecases/signinusecasedart",
+                              "label": "sign_in_use_case.dart"
+                            }
+                          ]
                         }
                       ]
                     }
