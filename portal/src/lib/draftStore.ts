@@ -143,33 +143,61 @@ class DraftStore {
   async publishChanges(workspace: string = 'docs') {
     const pages = this.getAllPages(workspace);
     const sidebar = this.getSidebar(workspace);
+    const errors: string[] = [];
 
-    // 1. Save all pages and their specific fields
+    // 1. Save all pages and their specific fields — track successes individually
+    const savedSlugs: string[] = [];
     for (const pageDraft of Object.values(pages)) {
-      for (const [field, value] of Object.entries(pageDraft.fields)) {
-         await api.post(`/content/save`, {
+      try {
+        for (const [field, value] of Object.entries(pageDraft.fields)) {
+          await api.post(`/content/save`, {
             slug: pageDraft.slug,
-            field: field,
-            newValue: value,
-            block_id: field === 'content' ? 'content' : field, // Convention
+            content: value,     // Backend expects 'content' as primary field
+            newValue: value,    // Also send as newValue for compatibility
             workspace: workspace
           });
+        }
+        savedSlugs.push(pageDraft.slug);
+      } catch (err: any) {
+        console.error(`[DraftStore] Failed to save ${pageDraft.slug}:`, err);
+        errors.push(pageDraft.slug);
       }
     }
 
     // 2. Save sidebar if changed
+    let sidebarSaved = false;
     if (sidebar) {
-      await api.post(`/sidebar?workspace=${workspace}`, { tree: sidebar.tree });
+      try {
+        await api.post(`/sidebar?workspace=${workspace}`, { tree: sidebar.tree });
+        sidebarSaved = true;
+      } catch (err: any) {
+        console.error('[DraftStore] Failed to save sidebar:', err);
+        errors.push('sidebar');
+      }
     }
 
-    // 3. Trigger rebuild (only for docs)
-    if (workspace === 'docs') {
-      await api.post('/content/trigger-rebuild', {});
+    // 3. Trigger rebuild (only for docs workspace)
+    if (workspace === 'docs' && errors.length === 0) {
+      try {
+        await api.post('/content/trigger-rebuild', {});
+      } catch {
+        // Non-critical: rebuild trigger failure doesn't lose data
+      }
     }
     
-    // 4. Clear everything for THIS workspace
-    this.clearAll(workspace);
+    // 4. ONLY clear drafts that were CONFIRMED saved — never lose unsaved work
+    for (const slug of savedSlugs) {
+      this.removePage(slug, workspace);
+    }
+    if (sidebarSaved) {
+      this.removeSidebar(workspace);
+    }
     this.syncWithPendingChanges(workspace);
+
+    // 5. If any saves failed, throw so PublishButton shows error state
+    if (errors.length > 0) {
+      throw new Error(`Failed to save: ${errors.join(', ')}`);
+    }
   }
 
   hasChanges(workspace: string = 'docs'): boolean {
