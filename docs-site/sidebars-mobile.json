@@ -124,6 +124,27 @@
                           ]
                         }
                       ]
+                    },
+                    {
+                      "type": "category",
+                      "label": "domain",
+                      "collapsible": true,
+                      "collapsed": false,
+                      "items": [
+                        {
+                          "type": "category",
+                          "label": "entities",
+                          "collapsible": true,
+                          "collapsed": false,
+                          "items": [
+                            {
+                              "type": "doc",
+                              "id": "deltalabs-mobile/lib/features/auth/domain/entities/userdart",
+                              "label": "user.dart"
+                            }
+                          ]
+                        }
+                      ]
                     }
                   ]
                 }
