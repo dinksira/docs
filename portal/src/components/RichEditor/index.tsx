@@ -230,7 +230,11 @@ export default function RichEditor({
       const html = editor.getHTML();
       const markdown = turndown.turndown(html);
       currentMarkdown.current = markdown;
+      console.log(`[RichEditor] ✍️ onUpdate fired — slug: ${slug}, workspace: ${workspace}, markdown length: ${markdown.length}`);
       draftStore.savePage(slug, markdown, originalMarkdown.current, workspace);
+      // Verify it was actually saved
+      const verified = draftStore.getPage(slug, workspace);
+      console.log(`[RichEditor] 💾 Draft verified — saved: ${!!verified}, stored length: ${verified?.length ?? 0}`);
     },
   });
 
