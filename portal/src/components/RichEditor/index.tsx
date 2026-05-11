@@ -200,23 +200,25 @@ export default function RichEditor({
         if (isInsideCodeBlock) return false;
 
         // Heuristic: Does it look like Markdown?
-        // Matches: # Headings, **bold**, [links](...), - lists, ``` code blocks, etc.
         const isMarkdown = /(^|\n)(#+ |[*_-]{2,}|> |[*+-] |\[.+\]\(.+\)|```)/.test(text);
         
         if (isMarkdown) {
           try {
-            // Convert markdown to HTML
             const html = marked.parse(text) as string;
             if (editor) {
               editor.commands.insertContent(html);
-              return true; // We handled it
+              return true;
             }
           } catch (e) {
             console.error("Markdown paste parsing failed:", e);
           }
         }
-        return false; // Let standard paste take over
-      }
+        return false;
+      },
+      attributes: {
+        class: "rich-editor-content",
+        spellcheck: "true",
+      },
     },
     content: marked.parse(draftStore.getPage(slug, workspace) || content) as string,
     editable: false,
@@ -225,15 +227,7 @@ export default function RichEditor({
       const html = editor.getHTML();
       const markdown = turndown.turndown(html);
       currentMarkdown.current = markdown;
-
-      // Always save to draftStore to ensure work is never lost
       draftStore.savePage(slug, markdown, originalMarkdown.current, workspace);
-    },
-    editorProps: {
-      attributes: {
-        class: "rich-editor-content",
-        spellcheck: "true",
-      },
     },
   });
 
