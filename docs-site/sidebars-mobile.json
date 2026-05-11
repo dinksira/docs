@@ -196,6 +196,41 @@
                             },
                             {
                               "type": "doc",
+                              "id": "deltalabs-mobile/lib/features/auth/presentation/pages/loginpagedart",
+                              "label": "login_page.dart"
+                            },
+                            {
+                              "type": "doc",
+                              "id": "deltalabs-mobile/lib/features/auth/presentation/pages/registerdobpagedart",
+                              "label": "register_dob_page.dart"
+                            },
+                            {
+                              "type": "doc",
+                              "id": "deltalabs-mobile/lib/features/auth/presentation/pages/registerotppagedart",
+                              "label": "register_otp_page.dart"
+                            },
+                            {
+                              "type": "doc",
+                              "id": "deltalabs-mobile/lib/features/auth/presentation/pages/registerpasswordpagedart",
+                              "label": "register_password_page.dart"
+                            },
+                            {
+                              "type": "doc",
+                              "id": "deltalabs-mobile/lib/features/auth/presentation/pages/registerstep1pagedart",
+                              "label": "register_step1_page.dart"
+                            },
+                            {
+                              "type": "doc",
+                              "id": "deltalabs-mobile/lib/features/auth/presentation/pages/registerstep2pagedart",
+                              "label": "register_step2_page.dart"
+                            },
+                            {
+                              "type": "doc",
+                              "id": "deltalabs-mobile/lib/features/auth/presentation/pages/resetpasswordpagedart",
+                              "label": "reset_password_page.dart"
+                            },
+                            {
+                              "type": "doc",
                               "id": "deltalabs-mobile/lib/features/auth/presentation/pages/splashpagedart",
                               "label": "splash_page.dart"
                             }
