@@ -190,6 +190,34 @@ export default function RichEditor({
         },
       }).configure({ lowlight }),
     ],
+    editorProps: {
+      handlePaste: (view, event) => {
+        const text = event.clipboardData?.getData('text/plain');
+        if (!text) return false;
+
+        // Don't auto-parse if we're already inside a code block
+        const isInsideCodeBlock = editor?.isActive('codeBlock');
+        if (isInsideCodeBlock) return false;
+
+        // Heuristic: Does it look like Markdown?
+        // Matches: # Headings, **bold**, [links](...), - lists, ``` code blocks, etc.
+        const isMarkdown = /(^|\n)(#+ |[*_-]{2,}|> |[*+-] |\[.+\]\(.+\)|```)/.test(text);
+        
+        if (isMarkdown) {
+          try {
+            // Convert markdown to HTML
+            const html = marked.parse(text) as string;
+            if (editor) {
+              editor.commands.insertContent(html);
+              return true; // We handled it
+            }
+          } catch (e) {
+            console.error("Markdown paste parsing failed:", e);
+          }
+        }
+        return false; // Let standard paste take over
+      }
+    },
     content: marked.parse(draftStore.getPage(slug, workspace) || content) as string,
     editable: false,
     onFocus: () => setIsEditing(true),
