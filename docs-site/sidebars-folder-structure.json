@@ -596,6 +596,11 @@
                       "type": "doc",
                       "id": "deltalabsbackend/app/domain/identity/recoverservicepy",
                       "label": "recover_service.py"
+                    },
+                    {
+                      "type": "doc",
+                      "id": "deltalabsbackend/app/domain/identity/repositorypy",
+                      "label": "repository.py"
                     }
                   ]
                 }
