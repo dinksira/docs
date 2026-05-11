@@ -241,6 +241,23 @@ export default function RichEditor({
     }
   }, [editor, isEditing]);
 
+  // CONTENT RE-HYDRATION: Sync content when slug or server-content changes
+  useEffect(() => {
+    if (!editor || !slug) return;
+
+    // RULE: Draft always wins over server content
+    const finalMarkdown = draftStore.getPage(slug, workspace) || content;
+    const newHtml = marked.parse(finalMarkdown) as string;
+    
+    // Only update if the content is actually different to avoid cursor flickering
+    if (editor.getHTML() !== newHtml) {
+      editor.commands.setContent(newHtml, false); // false = don't emit update event
+    }
+
+    originalMarkdown.current = content;
+    currentMarkdown.current = finalMarkdown;
+  }, [editor, slug, content, workspace]);
+
   // MS Word Style Table Resizing Logic
   useEffect(() => {
     if (!editor) return;
