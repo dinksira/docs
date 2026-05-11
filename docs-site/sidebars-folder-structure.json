@@ -579,6 +579,27 @@
               "type": "doc",
               "id": "deltalabsbackend/app/mainpy",
               "label": "main.py"
+            },
+            {
+              "type": "category",
+              "label": "domain",
+              "collapsible": true,
+              "collapsed": false,
+              "items": [
+                {
+                  "type": "category",
+                  "label": "identity",
+                  "collapsible": true,
+                  "collapsed": false,
+                  "items": [
+                    {
+                      "type": "doc",
+                      "id": "deltalabsbackend/app/domain/identity/recoverservicepy",
+                      "label": "recover_service.py"
+                    }
+                  ]
+                }
+              ]
             }
           ]
         },
