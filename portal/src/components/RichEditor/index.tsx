@@ -121,6 +121,9 @@ export default function RichEditor({
   const handleDoubleClick = () => {
     if (!isEditing) {
       setIsEditing(true);
+      setTimeout(() => {
+        editor?.commands.focus();
+      }, 50);
     }
   };
 
@@ -230,6 +233,13 @@ export default function RichEditor({
       draftStore.savePage(slug, markdown, originalMarkdown.current, workspace);
     },
   });
+
+  // Sync edit mode with tiptap engine
+  useEffect(() => {
+    if (editor) {
+      editor.setEditable(isEditing);
+    }
+  }, [editor, isEditing]);
 
   // MS Word Style Table Resizing Logic
   useEffect(() => {
