@@ -143,6 +143,19 @@
                               "label": "user.dart"
                             }
                           ]
+                        },
+                        {
+                          "type": "category",
+                          "label": "repositories",
+                          "collapsible": true,
+                          "collapsed": false,
+                          "items": [
+                            {
+                              "type": "doc",
+                              "id": "deltalabs-mobile/lib/features/auth/domain/repositories/authrepositorydart",
+                              "label": "auth_repository.dart"
+                            }
+                          ]
                         }
                       ]
                     }
