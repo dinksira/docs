@@ -64,16 +64,47 @@ export default function WorkspacePageContent() {
       setChangeMap(buildChangeMap(cached));
     }
 
-    // 2. Always fetch fresh in background
+    // 2. Check Local-First Drafts (Critical for new pages not yet on server)
+    const draftContent = draftStore.getPage(targetSlug, workspaceSlug);
+    const draftTitle = draftStore.getField(targetSlug, 'title', workspaceSlug);
+    const localSidebar = draftStore.getSidebar(workspaceSlug);
+    
+    const isKnownLocally = !!draftContent || !!draftTitle || (localSidebar?.tree && (() => {
+      const checkNode = (nodes: any[]): boolean => {
+        for (const n of nodes) {
+          if (n.slug === targetSlug) return true;
+          if (n.children && checkNode(n.children)) return true;
+        }
+        return false;
+      };
+      return checkNode(localSidebar.tree);
+    })());
+
+    if (isKnownLocally && !cached) {
+      const virtualPage: PageData = {
+        slug: targetSlug,
+        title: draftTitle || (targetSlug.split('/').pop()?.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase())) || 'Untitled Page',
+        content: draftContent || '',
+        category: 'Draft',
+        sidebar_position: 1,
+        change_log: []
+      };
+      setPage(virtualPage);
+      setChangeMap({});
+      if (loadingSlugRef.current === cacheKey) return; // We're good for now
+    }
+
+    // 3. Always try to fetch fresh from server in background
     try {
       const data = await api.get<PageData>(`/pages/${targetSlug}?workspace=${workspaceSlug}`);
       if (loadingSlugRef.current === cacheKey) {
         pageCache.set(cacheKey, data);
         setPage(data);
         setChangeMap(buildChangeMap(data));
+        setNotFound(false);
       }
     } catch {
-      if (!cached) {
+      if (!cached && !isKnownLocally) {
         setNotFound(true);
       }
     }
