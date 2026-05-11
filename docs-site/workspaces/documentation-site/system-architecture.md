@@ -1,6 +1,6 @@
 ---
-title: Ws:Documentation Site:System Architecture
-sidebar_label: Ws:Documentation Site:System Architecture
+title: System Architecture
+sidebar_label: System Architecture
 id: system-architecture
 ---
 
