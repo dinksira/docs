@@ -10,6 +10,7 @@ import {
   ChevronDown,
   Info
 } from 'lucide-react';
+import { api } from '@/lib/api';
 import { pendingChanges } from '@/lib/pendingChanges';
 import { draftStore } from '@/lib/draftStore';
 import { useParams, usePathname } from 'next/navigation';
