@@ -544,6 +544,11 @@
                   "type": "doc",
                   "id": "deltalabsbackend/app/core/ratelimitpy",
                   "label": "rate_limit.py"
+                },
+                {
+                  "type": "doc",
+                  "id": "deltalabsbackend/app/core/securitypy",
+                  "label": "security.py"
                 }
               ]
             },
