@@ -190,6 +190,19 @@
                               "label": "forgot_otp_page.dart"
                             }
                           ]
+                        },
+                        {
+                          "type": "category",
+                          "label": "providers",
+                          "collapsible": true,
+                          "collapsed": false,
+                          "items": [
+                            {
+                              "type": "doc",
+                              "id": "deltalabs-mobile/lib/features/auth/presentation/providers/authproviderdart",
+                              "label": "auth_provider.dart"
+                            }
+                          ]
                         }
                       ]
                     }
