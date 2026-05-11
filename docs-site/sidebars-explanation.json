@@ -2,6 +2,37 @@
   "sidebar_explanation": [
     {
       "type": "category",
+      "label": "System Architecture Diagram Design",
+      "collapsible": true,
+      "collapsed": false,
+      "items": [
+        {
+          "type": "category",
+          "label": "Authentication",
+          "collapsible": true,
+          "collapsed": false,
+          "items": [
+            {
+              "type": "doc",
+              "id": "system-architecture-diagram-design/authentication/system-flow-diagram",
+              "label": "System flow diagram"
+            },
+            {
+              "type": "doc",
+              "id": "system-architecture-diagram-design/authentication/backend-design-diagram",
+              "label": "Backend Design diagram"
+            },
+            {
+              "type": "doc",
+              "id": "system-architecture-diagram-design/authentication/frontend-component-optimization-and-component-integration-design",
+              "label": "Frontend component optimization  and component integration design"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "category",
       "label": "Deltalabs_Frontend",
       "collapsible": true,
       "collapsed": false,
@@ -12,6 +43,19 @@
           "collapsible": true,
           "collapsed": false,
           "items": [
+            {
+              "type": "category",
+              "label": "app",
+              "collapsible": true,
+              "collapsed": false,
+              "items": [
+                {
+                  "type": "doc",
+                  "id": "readme",
+                  "label": "ReadMe"
+                }
+              ]
+            },
             {
               "type": "category",
               "label": "components",
@@ -208,37 +252,6 @@
                   ]
                 }
               ]
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "type": "category",
-      "label": "System Architecture Diagram Design",
-      "collapsible": true,
-      "collapsed": false,
-      "items": [
-        {
-          "type": "category",
-          "label": "Authentication",
-          "collapsible": true,
-          "collapsed": false,
-          "items": [
-            {
-              "type": "doc",
-              "id": "system-architecture-diagram-design/authentication/system-flow-diagram",
-              "label": "System flow diagram"
-            },
-            {
-              "type": "doc",
-              "id": "system-architecture-diagram-design/authentication/backend-design-diagram",
-              "label": "Backend Design diagram"
-            },
-            {
-              "type": "doc",
-              "id": "system-architecture-diagram-design/authentication/frontend-component-optimization-and-component-integration-design",
-              "label": "Frontend component optimization  and component integration design"
             }
           ]
         }
