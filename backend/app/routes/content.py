@@ -70,6 +70,12 @@ id: {safe_slug}
         content=file_content,
         message=f"{workspace}: content updated by {admin_name}"
     )
+    if not github_success:
+        logger.error(f"GitHub write failed for {file_path}")
+        # For docs workspace, this is critical. For others, we might be more lenient, 
+        # but let's be strict for now to ensure data integrity.
+        raise HTTPException(status_code=500, detail=f"GitHub synchronization failed for {file_path}")
+
     logger.info(f"GitHub write result for {file_path}: {github_success}")
 
     change_entry = {
@@ -95,7 +101,7 @@ id: {safe_slug}
     return {
         "success": True,
         "slug": slug,
-        "github": github_success if workspace == "docs" else True
+        "github": True
     }
 
 

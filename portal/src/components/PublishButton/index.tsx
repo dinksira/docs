@@ -76,15 +76,8 @@ export default function PublishButton() {
       await draftStore.publishChanges(workspaceSlug);
       
       // 🚀 Trigger the static-site rebuild
-      // This will call the FastAPI endpoint which fires the Vercel deploy hook
       try {
-        const token = localStorage.getItem('delta_token');
-        await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'}/workspaces/trigger-rebuild`, {
-          method: 'POST',
-          headers: {
-            'Authorization': `Bearer ${token}`
-          }
-        });
+        await api.post('/content/trigger-rebuild', {});
         console.log('Static site rebuild triggered successfully');
       } catch (triggerErr) {
         console.error('Failed to trigger rebuild:', triggerErr);
