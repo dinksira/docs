@@ -86,6 +86,19 @@
                       "label": "Readme_di"
                     }
                   ]
+                },
+                {
+                  "type": "category",
+                  "label": "domain",
+                  "collapsible": true,
+                  "collapsed": false,
+                  "items": [
+                    {
+                      "type": "doc",
+                      "id": "deltalabs-mobile/lib/core/domain/readmedomain",
+                      "label": "Readme_domain"
+                    }
+                  ]
                 }
               ]
             },
