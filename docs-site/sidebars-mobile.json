@@ -64,13 +64,8 @@
                   "items": [
                     {
                       "type": "doc",
-                      "id": "deltalabs-mobile/lib/core/config/appconfigdart",
-                      "label": "app_config.dart"
-                    },
-                    {
-                      "type": "doc",
-                      "id": "deltalabs-mobile/lib/core/config/environmentdart",
-                      "label": "environment.dart"
+                      "id": "deltalabs-mobile/lib/core/config/readmeconfig",
+                      "label": "Readme_config"
                     }
                   ]
                 },
