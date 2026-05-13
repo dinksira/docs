@@ -14,6 +14,11 @@
           "items": [
             {
               "type": "doc",
+              "id": "deltalabs-mobile/lib/readmelib",
+              "label": "Readme_lib"
+            },
+            {
+              "type": "doc",
               "id": "deltalabs-mobile/lib/maindart",
               "label": "main.dart"
             },
