@@ -99,6 +99,19 @@
                       "label": "Readme_domain"
                     }
                   ]
+                },
+                {
+                  "type": "category",
+                  "label": "error",
+                  "collapsible": true,
+                  "collapsed": false,
+                  "items": [
+                    {
+                      "type": "doc",
+                      "id": "deltalabs-mobile/lib/core/error/readmeerror",
+                      "label": "Readme_error"
+                    }
+                  ]
                 }
               ]
             },
