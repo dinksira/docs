@@ -125,6 +125,19 @@
                       "label": "Readme_network"
                     }
                   ]
+                },
+                {
+                  "type": "category",
+                  "label": "realtime",
+                  "collapsible": true,
+                  "collapsed": false,
+                  "items": [
+                    {
+                      "type": "doc",
+                      "id": "deltalabs-mobile/lib/core/realtime/readmerealtime",
+                      "label": "Readme_realtime"
+                    }
+                  ]
                 }
               ]
             },
