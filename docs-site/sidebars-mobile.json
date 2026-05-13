@@ -197,6 +197,11 @@
                               "label": "auth_repository_impl.dart"
                             }
                           ]
+                        },
+                        {
+                          "type": "doc",
+                          "id": "deltalabs-mobile/lib/features/auth/data/readmeauthdata",
+                          "label": "Readme_authdata"
                         }
                       ]
                     },
@@ -325,6 +330,11 @@
                           ]
                         }
                       ]
+                    },
+                    {
+                      "type": "doc",
+                      "id": "deltalabs-mobile/lib/features/auth/readmeauth",
+                      "label": "Readme_auth"
                     }
                   ]
                 }
