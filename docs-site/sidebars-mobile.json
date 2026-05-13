@@ -249,6 +249,11 @@
                               "label": "sign_in_use_case.dart"
                             }
                           ]
+                        },
+                        {
+                          "type": "doc",
+                          "id": "deltalabs-mobile/lib/features/auth/domain/readmeauthdomain",
+                          "label": "Readme_authdomain"
                         }
                       ]
                     },
