@@ -333,6 +333,11 @@
                               "label": "auth_provider.dart"
                             }
                           ]
+                        },
+                        {
+                          "type": "doc",
+                          "id": "deltalabs-mobile/lib/features/auth/presentation/readmeauthpresentaion",
+                          "label": "Readme_authpresentaion"
                         }
                       ]
                     },
