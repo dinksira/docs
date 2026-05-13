@@ -88,9 +88,27 @@ async def get_page(slug: str, workspace: str = "docs", user=Depends(portal_user)
     
     if not page or not page.get("content"):
         if workspace != "docs":
-            # Non-docs workspace: no GitHub fallback
+            # Non-docs workspace: auto-provision empty page if missing
+            # This supports the Local-First workflow where sidebar structure
+            # leads and the backend catches up with physical records.
             if not page:
-                raise HTTPException(status_code=404, detail=f"Page '{slug}' not found in workspace")
+                title = derive_title(slug)
+                db_slug_for_insert = db_slug
+                page_data = {
+                    "slug": db_slug_for_insert,
+                    "workspace": workspace,
+                    "title": title,
+                    "content": "",
+                    "sidebar_label": title,
+                    "change_log": [],
+                    "updatedAt": datetime.utcnow(),
+                }
+                await db.pages.update_one(
+                    {"slug": db_slug_for_insert},
+                    {"$set": page_data},
+                    upsert=True
+                )
+                page = page_data
         else:
             # Docs workspace: Fetch from GitHub if missing in MongoDB
             from app.github_client import get_repo

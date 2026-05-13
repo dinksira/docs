@@ -243,9 +243,9 @@ async def save_sidebar(
             )
             logger.info(f"Sidebar saved to MongoDB and GitHub for workspace '{workspace}'")
         
-        # 4. Auto-Provisioning: Ensure every page in the tree has a physical file
+        # 4. Auto-Provisioning: Ensure every page in the tree has a physical file AND a MongoDB record
         # This supports the 'Local-First' copy/paste workflow
-        def ensure_pages_exist(nodes, ws):
+        async def ensure_pages_exist(nodes, ws):
             for node in nodes:
                 if node.get("type") == "page" and node.get("slug"):
                     slug = node["slug"]
@@ -268,11 +268,26 @@ async def save_sidebar(
                         content = f"---\ntitle: {title}\nsidebar_label: {title}\nid: {safe_slug}\n---\n\n# {title}\n\nStart writing here...\n"
                         logger.info(f"Auto-provisioning missing file: {fpath}")
                         write_file(path=fpath, content=content, message=f"chore({ws}): auto-create file for {clean_slug}")
+                    
+                    # Ensure MongoDB record exists too (prevents 404 on content fetch)
+                    db_slug = clean_slug if ws == "docs" else f"ws:{ws}:{clean_slug}"
+                    existing_page = await db.pages.find_one({"slug": db_slug})
+                    if not existing_page:
+                        title = node.get("label", clean_slug)
+                        await db.pages.insert_one({
+                            "slug": db_slug,
+                            "workspace": ws,
+                            "title": title,
+                            "content": f"# {title}\n\nStart writing here...",
+                            "sidebar_label": title,
+                            "change_log": [],
+                        })
+                        logger.info(f"Auto-provisioned MongoDB record for slug: {db_slug}")
                 
                 if node.get("children"):
-                    ensure_pages_exist(node["children"], ws)
+                    await ensure_pages_exist(node["children"], ws)
 
-        ensure_pages_exist(clean_tree, workspace)
+        await ensure_pages_exist(clean_tree, workspace)
         
         from app.github_client import _trigger_vercel_rebuild as trigger_rebuild
         trigger_rebuild()
