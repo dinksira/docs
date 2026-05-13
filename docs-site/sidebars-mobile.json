@@ -112,6 +112,19 @@
                       "label": "Readme_error"
                     }
                   ]
+                },
+                {
+                  "type": "category",
+                  "label": "network",
+                  "collapsible": true,
+                  "collapsed": false,
+                  "items": [
+                    {
+                      "type": "doc",
+                      "id": "deltalabs-mobile/lib/core/network/readmenetwork",
+                      "label": "Readme_network"
+                    }
+                  ]
                 }
               ]
             },
