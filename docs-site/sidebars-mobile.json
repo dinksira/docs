@@ -73,6 +73,19 @@
                   "type": "doc",
                   "id": "deltalabs-mobile/lib/core/readmecore",
                   "label": "Readme_core"
+                },
+                {
+                  "type": "category",
+                  "label": "di",
+                  "collapsible": true,
+                  "collapsed": false,
+                  "items": [
+                    {
+                      "type": "doc",
+                      "id": "deltalabs-mobile/lib/core/di/readmedi",
+                      "label": "Readme_di"
+                    }
+                  ]
                 }
               ]
             },
