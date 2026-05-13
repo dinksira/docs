@@ -57,6 +57,11 @@
               "collapsed": false,
               "items": [
                 {
+                  "type": "doc",
+                  "id": "deltalabs-mobile/lib/core/readmecore",
+                  "label": "Readme_core"
+                },
+                {
                   "type": "category",
                   "label": "config",
                   "collapsible": true,
@@ -68,11 +73,6 @@
                       "label": "Readme_config"
                     }
                   ]
-                },
-                {
-                  "type": "doc",
-                  "id": "deltalabs-mobile/lib/core/readmecore",
-                  "label": "Readme_core"
                 },
                 {
                   "type": "category",
