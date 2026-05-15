@@ -28,6 +28,24 @@
               "label": "Frontend component optimization  and component integration design"
             }
           ]
+        },
+        {
+          "type": "category",
+          "label": "Feed",
+          "collapsible": true,
+          "collapsed": false,
+          "items": [
+            {
+              "type": "doc",
+              "id": "system-architecture-diagram-design/feed/system-flow-diagram",
+              "label": "System flow diagram"
+            },
+            {
+              "type": "doc",
+              "id": "system-architecture-diagram-design/feed/backend-design-diagram",
+              "label": "Backend Design diagram"
+            }
+          ]
         }
       ]
     },
