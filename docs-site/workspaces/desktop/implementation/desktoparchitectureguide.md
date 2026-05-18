@@ -4,7 +4,7 @@ sidebar_label: Desktoparchitectureguide
 id: implementation/desktoparchitectureguide
 ---
 
-# Delta Labs Desktop — Complete Technical & Runtime Architecture Guide
+# Delta Labs Desktop Complete Technical & Runtime Architecture Guide
 
 * * *
 
