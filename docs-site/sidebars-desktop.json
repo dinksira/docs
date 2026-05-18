@@ -15,6 +15,11 @@
           "type": "doc",
           "id": "implementation/platform-integration",
           "label": "Platform Integration"
+        },
+        {
+          "type": "doc",
+          "id": "implementation/desktoparchitectureguide",
+          "label": "desktop_architecture"
         }
       ]
     }
