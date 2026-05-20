@@ -2,24 +2,45 @@
   "sidebar_desktop": [
     {
       "type": "category",
-      "label": "Implementation",
+      "label": "General System",
       "collapsible": true,
       "collapsed": false,
       "items": [
         {
           "type": "doc",
-          "id": "implementation/infrastructure",
-          "label": "Infrastructure"
+          "id": "general-system/system-architecture-design-flow",
+          "label": "System Architecture Design Flow"
         },
         {
           "type": "doc",
-          "id": "implementation/platform-integration",
-          "label": "Platform Integration"
-        },
+          "id": "general-system/code-documentation",
+          "label": "Code Documentation"
+        }
+      ]
+    },
+    {
+      "type": "category",
+      "label": "Frontend",
+      "collapsible": true,
+      "collapsed": false,
+      "items": [
         {
           "type": "doc",
-          "id": "implementation/desktoparchitectureguide",
-          "label": "desktop_architecture"
+          "id": "frontend/component-hierarchy",
+          "label": "Component Hierarchy"
+        }
+      ]
+    },
+    {
+      "type": "category",
+      "label": "Backend",
+      "collapsible": true,
+      "collapsed": false,
+      "items": [
+        {
+          "type": "doc",
+          "id": "backend/backend-design-flow",
+          "label": "Backend Design Flow"
         }
       ]
     }
