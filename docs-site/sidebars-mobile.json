@@ -486,6 +486,11 @@
                           "label": "Readme.md"
                         }
                       ]
+                    },
+                    {
+                      "type": "doc",
+                      "id": "deltalabs-mobile/lib/features/shell/readmemd",
+                      "label": "Readme.md"
                     }
                   ]
                 }
