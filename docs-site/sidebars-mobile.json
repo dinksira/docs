@@ -347,6 +347,19 @@
                       "label": "Readme_auth"
                     }
                   ]
+                },
+                {
+                  "type": "category",
+                  "label": "feed",
+                  "collapsible": true,
+                  "collapsed": false,
+                  "items": [
+                    {
+                      "type": "doc",
+                      "id": "deltalabs-mobile/lib/features/feed/readmemd",
+                      "label": "Readme.md"
+                    }
+                  ]
                 }
               ]
             },
