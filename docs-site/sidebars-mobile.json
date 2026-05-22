@@ -355,6 +355,19 @@
                   "collapsed": false,
                   "items": [
                     {
+                      "type": "category",
+                      "label": "data",
+                      "collapsible": true,
+                      "collapsed": false,
+                      "items": [
+                        {
+                          "type": "doc",
+                          "id": "deltalabs-mobile/lib/features/feed/data/readmemd",
+                          "label": "Readme.md"
+                        }
+                      ]
+                    },
+                    {
                       "type": "doc",
                       "id": "deltalabs-mobile/lib/features/feed/readmemd",
                       "label": "Readme.md"
