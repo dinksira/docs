@@ -18,21 +18,6 @@
               "label": "Readme_lib"
             },
             {
-              "type": "doc",
-              "id": "deltalabs-mobile/lib/maindart",
-              "label": "main.dart"
-            },
-            {
-              "type": "doc",
-              "id": "deltalabs-mobile/lib/firebaseoptionsdart",
-              "label": "firebase_options.dart"
-            },
-            {
-              "type": "doc",
-              "id": "deltalabs-mobile/lib/bootstrapdart",
-              "label": "bootstrap.dart"
-            },
-            {
               "type": "category",
               "label": "app",
               "collapsible": true,
