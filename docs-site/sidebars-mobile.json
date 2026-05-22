@@ -420,6 +420,27 @@
                       ]
                     }
                   ]
+                },
+                {
+                  "type": "category",
+                  "label": "features",
+                  "collapsible": true,
+                  "collapsed": false,
+                  "items": [
+                    {
+                      "type": "category",
+                      "label": "data",
+                      "collapsible": true,
+                      "collapsed": false,
+                      "items": [
+                        {
+                          "type": "doc",
+                          "id": "deltalabs-mobile/lib/features/features/data/readmemd",
+                          "label": "Readme.md"
+                        }
+                      ]
+                    }
+                  ]
                 }
               ]
             },
