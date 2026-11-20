@@ -1,7 +1,7 @@
 ---
 title: Infrastructure
 sidebar_label: Infrastructure
-id: implementation/infrastructure
+id: infrastructure
 ---
 
 **Overview**  

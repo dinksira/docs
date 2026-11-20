@@ -1,7 +1,7 @@
 ---
 title: Readmecore
 sidebar_label: Readmecore
-id: deltalabs-mobile/lib/core/readmecore
+id: readmecore
 ---
 
 # lib/core/

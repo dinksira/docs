@@ -1,7 +1,7 @@
 ---
 title: Authsessioncontexttsx
 sidebar_label: Authsessioncontexttsx
-id: deltalabsfrontend/src/contexts/authsessioncontexttsx
+id: authsessioncontexttsx
 ---
 
 ```typescriptreact

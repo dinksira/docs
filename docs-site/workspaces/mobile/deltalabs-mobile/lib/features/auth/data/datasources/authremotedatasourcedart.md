@@ -1,7 +1,7 @@
 ---
 title: Authremotedatasourcedart
 sidebar_label: Authremotedatasourcedart
-id: deltalabs-mobile/lib/features/auth/data/datasources/authremotedatasourcedart
+id: authremotedatasourcedart
 ---
 
 ```dart

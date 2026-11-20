@@ -1,7 +1,7 @@
 ---
 title: Component Hierarchy
 sidebar_label: Component Hierarchy
-id: frontend/component-hierarchy
+id: component-hierarchy
 ---
 
 # Component Hierarchy & Atomic Design

@@ -1,7 +1,7 @@
 ---
 title: Readmeauthdomain
 sidebar_label: Readmeauthdomain
-id: deltalabs-mobile/lib/features/auth/domain/readmeauthdomain
+id: readmeauthdomain
 ---
 
 # lib/features/auth/domain/

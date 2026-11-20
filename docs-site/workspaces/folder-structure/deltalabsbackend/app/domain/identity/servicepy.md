@@ -1,7 +1,7 @@
 ---
 title: service.py
 sidebar_label: service.py
-id: deltalabsbackend/app/domain/identity/servicepy
+id: servicepy
 ---
 
 # service.py

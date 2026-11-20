@@ -1,7 +1,7 @@
 ---
 title: The Local First Rule
 sidebar_label: The Local First Rule
-id: back-end/the-local-first-rule
+id: the-local-first-rule
 ---
 
 # The Local-First Rule

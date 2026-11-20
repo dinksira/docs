@@ -1,7 +1,7 @@
 ---
 title: Themecontexttsx
 sidebar_label: Themecontexttsx
-id: deltalabsfrontend/src/contexts/themecontexttsx
+id: themecontexttsx
 ---
 
 ```typescriptreact

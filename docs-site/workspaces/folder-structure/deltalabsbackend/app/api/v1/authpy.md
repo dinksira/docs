@@ -1,7 +1,7 @@
 ---
 title: Authpy
 sidebar_label: Authpy
-id: deltalabsbackend/app/api/v1/authpy
+id: authpy
 ---
 
 ```

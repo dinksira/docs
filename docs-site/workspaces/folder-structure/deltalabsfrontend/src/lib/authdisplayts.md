@@ -1,7 +1,7 @@
 ---
 title: Authdisplayts
 sidebar_label: Authdisplayts
-id: deltalabsfrontend/src/lib/authdisplayts
+id: authdisplayts
 ---
 
 ```typescript

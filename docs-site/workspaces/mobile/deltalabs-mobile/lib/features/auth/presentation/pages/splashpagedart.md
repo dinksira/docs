@@ -1,7 +1,7 @@
 ---
 title: Splashpagedart
 sidebar_label: Splashpagedart
-id: deltalabs-mobile/lib/features/auth/presentation/pages/splashpagedart
+id: splashpagedart
 ---
 
 ```dart

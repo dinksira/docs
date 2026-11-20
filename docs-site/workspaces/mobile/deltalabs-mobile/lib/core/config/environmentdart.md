@@ -1,7 +1,7 @@
 ---
 title: Environmentdart
 sidebar_label: Environmentdart
-id: deltalabs-mobile/lib/core/config/environmentdart
+id: environmentdart
 ---
 
 ```dart

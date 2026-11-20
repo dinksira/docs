@@ -37,7 +37,7 @@ if (fs.existsSync(dynamicDocsPath)) {
 const config: Config = {
   title: 'Delta Labs Documentation',
   tagline: 'Everything you need to build with Delta Labs',
-  url: 'https://delta-labs-docs-cyan.vercel.app',
+  url: process.env.DOCS_SITE_URL || 'http://localhost:3000',
   baseUrl: '/',
   onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',

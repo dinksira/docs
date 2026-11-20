@@ -1,7 +1,7 @@
 ---
 title: Appconfigdart
 sidebar_label: Appconfigdart
-id: deltalabs-mobile/lib/core/config/appconfigdart
+id: appconfigdart
 ---
 
 ```dart

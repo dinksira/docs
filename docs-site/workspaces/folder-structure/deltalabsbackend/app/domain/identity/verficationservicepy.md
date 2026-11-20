@@ -1,7 +1,7 @@
 ---
 title: Verficationservicepy
 sidebar_label: Verficationservicepy
-id: deltalabsbackend/app/domain/identity/verficationservicepy
+id: verficationservicepy
 ---
 
 ```

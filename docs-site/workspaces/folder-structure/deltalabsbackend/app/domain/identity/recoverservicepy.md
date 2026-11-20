@@ -1,7 +1,7 @@
 ---
 title: Recoverservicepy
 sidebar_label: Recoverservicepy
-id: deltalabsbackend/app/domain/identity/recoverservicepy
+id: recoverservicepy
 ---
 
 ```

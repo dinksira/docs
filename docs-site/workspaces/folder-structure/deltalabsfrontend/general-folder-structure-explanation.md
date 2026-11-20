@@ -1,7 +1,7 @@
 ---
 title: General Folder Structure Explanation
 sidebar_label: General Folder Structure Explanation
-id: deltalabsfrontend/general-folder-structure-explanation
+id: general-folder-structure-explanation
 ---
 
 ## Routing

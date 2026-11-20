@@ -1,7 +1,7 @@
 ---
 title: Readmeapp
 sidebar_label: Readmeapp
-id: deltalabs-mobile/lib/app/readmeapp
+id: readmeapp
 ---
 
 # lib/app/

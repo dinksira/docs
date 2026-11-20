@@ -1,7 +1,7 @@
 ---
 title: Code Documentation
 sidebar_label: Code Documentation
-id: general-system/code-documentation
+id: code-documentation
 ---
 
 # Code Documentation Standards

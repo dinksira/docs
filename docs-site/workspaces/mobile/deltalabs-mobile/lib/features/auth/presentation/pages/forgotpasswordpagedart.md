@@ -1,7 +1,7 @@
 ---
 title: Forgotpasswordpagedart
 sidebar_label: Forgotpasswordpagedart
-id: deltalabs-mobile/lib/features/auth/presentation/pages/forgotpasswordpagedart
+id: forgotpasswordpagedart
 ---
 
 ```dart

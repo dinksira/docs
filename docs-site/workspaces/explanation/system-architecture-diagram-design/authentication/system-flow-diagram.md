@@ -1,7 +1,7 @@
 ---
 title: System Flow Diagram
 sidebar_label: System Flow Diagram
-id: system-architecture-diagram-design/authentication/system-flow-diagram
+id: system-flow-diagram
 ---
 
 ```

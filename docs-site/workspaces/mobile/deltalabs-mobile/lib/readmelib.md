@@ -1,7 +1,7 @@
 ---
 title: Readmelib
 sidebar_label: Readmelib
-id: deltalabs-mobile/lib/readmelib
+id: readmelib
 ---
 
 # lib/

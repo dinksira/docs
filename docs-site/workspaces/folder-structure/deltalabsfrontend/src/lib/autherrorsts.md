@@ -1,7 +1,7 @@
 ---
 title: Autherrorsts
 sidebar_label: Autherrorsts
-id: deltalabsfrontend/src/lib/autherrorsts
+id: autherrorsts
 ---
 
 ```typescript

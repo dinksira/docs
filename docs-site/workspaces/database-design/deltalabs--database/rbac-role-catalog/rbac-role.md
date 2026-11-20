@@ -1,7 +1,7 @@
 ---
 title: Rbac Role
 sidebar_label: Rbac Role
-id: deltalabs--database/rbac-role-catalog/rbac-role
+id: rbac-role
 ---
 
 > Authorization is \*\*tenant-scoped\*\*: every decision is tied to an \`org\_id\`, an active \`org\_memberships\` row, and then roles and permissions resolved from Mongo (plus one relationship-based exception below).

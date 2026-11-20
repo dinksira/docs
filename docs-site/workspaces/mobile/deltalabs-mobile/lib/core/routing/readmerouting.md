@@ -1,7 +1,7 @@
 ---
 title: Readmerouting
 sidebar_label: Readmerouting
-id: deltalabs-mobile/lib/core/routing/readmerouting
+id: readmerouting
 ---
 
 # lib/core/routing/

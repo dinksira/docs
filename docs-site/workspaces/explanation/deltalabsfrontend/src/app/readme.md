@@ -1,7 +1,7 @@
 ---
 title: ReadMe
 sidebar_label: ReadMe
-id: deltalabsfrontend/src/app/readme
+id: readme
 ---
 
 # ReadMe

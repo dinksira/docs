@@ -1,7 +1,7 @@
 ---
 title: Readmeerror
 sidebar_label: Readmeerror
-id: deltalabs-mobile/lib/core/error/readmeerror
+id: readmeerror
 ---
 
 # lib/core/error/

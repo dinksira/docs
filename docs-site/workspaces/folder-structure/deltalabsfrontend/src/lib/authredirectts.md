@@ -1,7 +1,7 @@
 ---
 title: authRedirect.ts
 sidebar_label: authRedirect.ts
-id: deltalabsfrontend/src/lib/authredirectts
+id: authredirectts
 ---
 
 # authRedirect.ts

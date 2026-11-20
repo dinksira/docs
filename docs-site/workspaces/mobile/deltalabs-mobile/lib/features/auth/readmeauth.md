@@ -1,7 +1,7 @@
 ---
 title: Readmeauth
 sidebar_label: Readmeauth
-id: deltalabs-mobile/lib/features/auth/readmeauth
+id: readmeauth
 ---
 
 # lib/features/auth/

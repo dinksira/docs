@@ -1,7 +1,7 @@
 ---
 title: Redisclientpy
 sidebar_label: Redisclientpy
-id: deltalabsbackend/app/infra/redisclientpy
+id: redisclientpy
 ---
 
 ```

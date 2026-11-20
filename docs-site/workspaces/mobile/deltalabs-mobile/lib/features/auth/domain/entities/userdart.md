@@ -1,7 +1,7 @@
 ---
 title: Userdart
 sidebar_label: Userdart
-id: deltalabs-mobile/lib/features/auth/domain/entities/userdart
+id: userdart
 ---
 
 ```dart

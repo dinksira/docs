@@ -1,7 +1,7 @@
 ---
 title: Readmerealtime
 sidebar_label: Readmerealtime
-id: deltalabs-mobile/lib/core/realtime/readmerealtime
+id: readmerealtime
 ---
 
 # lib/core/realtime/

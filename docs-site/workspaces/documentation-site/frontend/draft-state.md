@@ -1,7 +1,7 @@
 ---
 title: Draft State
 sidebar_label: Draft State
-id: frontend/draft-state
+id: draft-state
 ---
 
 # Draft State & Local-First Sync ☁️

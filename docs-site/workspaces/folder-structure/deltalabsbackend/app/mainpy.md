@@ -1,7 +1,7 @@
 ---
 title: Mainpy
 sidebar_label: Mainpy
-id: deltalabsbackend/app/mainpy
+id: mainpy
 ---
 
 ```

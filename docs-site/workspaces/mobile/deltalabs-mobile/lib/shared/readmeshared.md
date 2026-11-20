@@ -1,7 +1,7 @@
 ---
 title: Readmeshared
 sidebar_label: Readmeshared
-id: deltalabs-mobile/lib/shared/readmeshared
+id: readmeshared
 ---
 
 # lib/shared/

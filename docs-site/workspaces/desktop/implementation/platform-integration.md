@@ -1,7 +1,7 @@
 ---
 title: Platform Integration
 sidebar_label: Platform Integration
-id: implementation/platform-integration
+id: platform-integration
 ---
 
 **Platform Integration**  

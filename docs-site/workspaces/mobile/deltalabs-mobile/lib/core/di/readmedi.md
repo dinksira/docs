@@ -1,7 +1,7 @@
 ---
 title: Readmedi
 sidebar_label: Readmedi
-id: deltalabs-mobile/lib/core/di/readmedi
+id: readmedi
 ---
 
 # lib/core/di/

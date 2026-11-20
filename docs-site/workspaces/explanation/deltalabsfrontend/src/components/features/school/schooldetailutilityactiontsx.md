@@ -1,7 +1,7 @@
 ---
 title: SchoolDetailUtilityAction.tsx
 sidebar_label: SchoolDetailUtilityAction.tsx
-id: deltalabsfrontend/src/components/features/school/schooldetailutilityactiontsx
+id: schooldetailutilityactiontsx
 ---
 
 # SchoolDetailUtilityAction.tsx

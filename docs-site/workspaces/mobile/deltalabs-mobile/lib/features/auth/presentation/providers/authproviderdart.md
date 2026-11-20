@@ -1,7 +1,7 @@
 ---
 title: Authproviderdart
 sidebar_label: Authproviderdart
-id: deltalabs-mobile/lib/features/auth/presentation/providers/authproviderdart
+id: authproviderdart
 ---
 
 ```dart

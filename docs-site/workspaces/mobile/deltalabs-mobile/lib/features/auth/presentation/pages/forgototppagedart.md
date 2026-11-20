@@ -1,7 +1,7 @@
 ---
 title: Forgototppagedart
 sidebar_label: Forgototppagedart
-id: deltalabs-mobile/lib/features/auth/presentation/pages/forgototppagedart
+id: forgototppagedart
 ---
 
 ```dart

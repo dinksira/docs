@@ -1,7 +1,7 @@
 ---
 title: Database Architecture
 sidebar_label: Database Architecture
-id: back-end/database-architecture
+id: database-architecture
 ---
 
 # Database Architecture

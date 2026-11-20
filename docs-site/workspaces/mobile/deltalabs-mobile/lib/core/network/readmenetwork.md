@@ -1,7 +1,7 @@
 ---
 title: Readmenetwork
 sidebar_label: Readmenetwork
-id: deltalabs-mobile/lib/core/network/readmenetwork
+id: readmenetwork
 ---
 
 # lib/core/network/

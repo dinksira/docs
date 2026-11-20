@@ -1,7 +1,7 @@
 ---
 title: Apiclientts
 sidebar_label: Apiclientts
-id: deltalabsfrontend/src/lib/apiclientts
+id: apiclientts
 ---
 
 ```typescript

@@ -1,7 +1,7 @@
 ---
 title: Schemaspy
 sidebar_label: Schemaspy
-id: deltalabsbackend/app/domain/identity/schemaspy
+id: schemaspy
 ---
 
 ```

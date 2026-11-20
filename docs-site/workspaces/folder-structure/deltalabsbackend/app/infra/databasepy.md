@@ -1,7 +1,7 @@
 ---
 title: Databasepy
 sidebar_label: Databasepy
-id: deltalabsbackend/app/infra/databasepy
+id: databasepy
 ---
 
 ```

@@ -1,7 +1,7 @@
 ---
 title: Signinusecasedart
 sidebar_label: Signinusecasedart
-id: deltalabs-mobile/lib/features/auth/domain/usecases/signinusecasedart
+id: signinusecasedart
 ---
 
 ```dart

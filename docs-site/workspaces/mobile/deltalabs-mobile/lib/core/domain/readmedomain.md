@@ -1,7 +1,7 @@
 ---
 title: Readmedomain
 sidebar_label: Readmedomain
-id: deltalabs-mobile/lib/core/domain/readmedomain
+id: readmedomain
 ---
 
 # lib/core/domain/

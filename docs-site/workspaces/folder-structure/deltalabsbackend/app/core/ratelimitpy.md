@@ -1,7 +1,7 @@
 ---
 title: Ratelimitpy
 sidebar_label: Ratelimitpy
-id: deltalabsbackend/app/core/ratelimitpy
+id: ratelimitpy
 ---
 
 ```

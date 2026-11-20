@@ -1,7 +1,7 @@
 ---
 title: Backend Design Flow
 sidebar_label: Backend Design Flow
-id: backend/backend-design-flow
+id: backend-design-flow
 ---
 
 # System Architecture & Design Flow

@@ -1,7 +1,7 @@
 ---
 title: Readmeauthpresentaion
 sidebar_label: Readmeauthpresentaion
-id: deltalabs-mobile/lib/features/auth/presentation/readmeauthpresentaion
+id: readmeauthpresentaion
 ---
 
 # lib/features/auth/presentation/

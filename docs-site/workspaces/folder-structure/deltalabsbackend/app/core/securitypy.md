@@ -1,7 +1,7 @@
 ---
 title: Securitypy
 sidebar_label: Securitypy
-id: deltalabsbackend/app/core/securitypy
+id: securitypy
 ---
 
 ```

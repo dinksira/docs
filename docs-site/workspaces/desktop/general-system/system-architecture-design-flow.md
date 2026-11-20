@@ -1,7 +1,7 @@
 ---
 title: System Architecture Design Flow
 sidebar_label: System Architecture Design Flow
-id: general-system/system-architecture-design-flow
+id: system-architecture-design-flow
 ---
 
 # System Architecture Design Flow

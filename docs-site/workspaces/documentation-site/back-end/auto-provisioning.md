@@ -1,7 +1,7 @@
 ---
 title: Auto Provisioning
 sidebar_label: Auto Provisioning
-id: back-end/auto-provisioning
+id: auto-provisioning
 ---
 
 # Auto-Provisioning Logic

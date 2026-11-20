@@ -1,7 +1,7 @@
 ---
 title: Schoolworkspaceitem
 sidebar_label: Schoolworkspaceitem
-id: deltalabs--database/mongodb-collections/schoolworkspaceitem
+id: schoolworkspaceitem
 ---
 
 ```markdown

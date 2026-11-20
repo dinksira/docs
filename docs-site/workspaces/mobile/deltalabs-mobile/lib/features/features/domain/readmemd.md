@@ -1,7 +1,7 @@
 ---
 title: Readmemd
 sidebar_label: Readmemd
-id: deltalabs-mobile/lib/features/features/domain/readmemd
+id: readmemd
 ---
 
 # lib/features/features/domain/

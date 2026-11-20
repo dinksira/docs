@@ -1,7 +1,7 @@
 ---
 title: Signupflowservicepy
 sidebar_label: Signupflowservicepy
-id: deltalabsbackend/app/domain/identity/signupflowservicepy
+id: signupflowservicepy
 ---
 
 ```

@@ -1,7 +1,7 @@
 ---
 title: Desktoparchitectureguide
 sidebar_label: Desktoparchitectureguide
-id: implementation/desktoparchitectureguide
+id: desktoparchitectureguide
 ---
 
 Desktop architecture

@@ -1,7 +1,7 @@
 ---
 title: main.dart
 sidebar_label: main.dart
-id: deltalabs-mobile/lib/maindart
+id: maindart
 ---
 
 # main.dart

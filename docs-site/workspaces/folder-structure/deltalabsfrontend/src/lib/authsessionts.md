@@ -1,7 +1,7 @@
 ---
 title: authSession.ts
 sidebar_label: authSession.ts
-id: deltalabsfrontend/src/lib/authsessionts
+id: authsessionts
 ---
 
 # authSession.ts

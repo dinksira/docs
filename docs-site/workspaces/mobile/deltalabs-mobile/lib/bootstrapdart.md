@@ -1,7 +1,7 @@
 ---
 title: Bootstrapdart
 sidebar_label: Bootstrapdart
-id: deltalabs-mobile/lib/bootstrapdart
+id: bootstrapdart
 ---
 
 ```dart

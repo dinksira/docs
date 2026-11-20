@@ -1,7 +1,7 @@
 ---
 title: Usermodeldart
 sidebar_label: Usermodeldart
-id: deltalabs-mobile/lib/features/auth/data/models/usermodeldart
+id: usermodeldart
 ---
 
 ```dart

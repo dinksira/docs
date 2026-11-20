@@ -1,7 +1,7 @@
 ---
 title: queryKeys.ts
 sidebar_label: queryKeys.ts
-id: deltalabsfrontend/src/lib/querykeysts
+id: querykeysts
 ---
 
 # queryKeys.ts

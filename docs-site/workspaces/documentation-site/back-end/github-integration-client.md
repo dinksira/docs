@@ -1,7 +1,7 @@
 ---
 title: Github Integration Client
 sidebar_label: Github Integration Client
-id: back-end/github-integration-client
+id: github-integration-client
 ---
 
 # GitHub Integration Client

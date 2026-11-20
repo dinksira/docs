@@ -1,7 +1,7 @@
 ---
 title: Repositorypy
 sidebar_label: Repositorypy
-id: deltalabsbackend/app/domain/identity/repositorypy
+id: repositorypy
 ---
 
 ```

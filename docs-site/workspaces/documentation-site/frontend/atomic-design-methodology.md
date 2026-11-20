@@ -1,7 +1,7 @@
 ---
 title: Atomic Design Methodology
 sidebar_label: Atomic Design Methodology
-id: frontend/atomic-design-methodology
+id: atomic-design-methodology
 ---
 
 # Atomic Design Methodology

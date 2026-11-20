@@ -1,7 +1,7 @@
 ---
 title: Authrepositoryimpldart
 sidebar_label: Authrepositoryimpldart
-id: deltalabs-mobile/lib/features/auth/data/repositories/authrepositoryimpldart
+id: authrepositoryimpldart
 ---
 
 ```dart

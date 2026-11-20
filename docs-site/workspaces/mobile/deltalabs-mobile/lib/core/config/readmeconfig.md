@@ -1,7 +1,7 @@
 ---
 title: Readmeconfig
 sidebar_label: Readmeconfig
-id: deltalabs-mobile/lib/core/config/readmeconfig
+id: readmeconfig
 ---
 
 # lib/core/config/

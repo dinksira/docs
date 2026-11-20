@@ -1,7 +1,7 @@
 ---
 title: Httpclientpy
 sidebar_label: Httpclientpy
-id: deltalabsbackend/app/infra/httpclientpy
+id: httpclientpy
 ---
 
 ```

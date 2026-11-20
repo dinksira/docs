@@ -1,7 +1,7 @@
 ---
 title: queryClient.ts
 sidebar_label: queryClient.ts
-id: deltalabsfrontend/src/lib/queryclientts
+id: queryclientts
 ---
 
 # queryClient.ts

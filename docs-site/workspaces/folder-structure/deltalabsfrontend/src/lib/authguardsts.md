@@ -1,7 +1,7 @@
 ---
 title: authGuards.ts
 sidebar_label: authGuards.ts
-id: deltalabsfrontend/src/lib/authguardsts
+id: authguardsts
 ---
 
 # authGuards.ts

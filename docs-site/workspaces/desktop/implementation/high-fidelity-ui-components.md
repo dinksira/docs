@@ -1,7 +1,7 @@
 ---
 title: High Fidelity Ui Components
 sidebar_label: High Fidelity Ui Components
-id: implementation/high-fidelity-ui-components
+id: high-fidelity-ui-components
 ---
 
 **High-Fidelity UI Components**  

@@ -118,7 +118,7 @@ async function sync() {
 
         const frontmatter = [
           '---',
-          `id: ${safeSlug}`,
+          `id: ${safeSlug.split('/').pop()}`,
           `title: "${(page.title || safeSlug).replace(/"/g, '\\"')}"`,
           `sidebar_label: "${(page.sidebar_label || page.title || safeSlug).replace(/"/g, '\\"')}"`,
           `sidebar_position: ${page.sidebar_position || 1}`,

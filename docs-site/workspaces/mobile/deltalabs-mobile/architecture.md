@@ -1,7 +1,7 @@
 ---
 title: Architecture
 sidebar_label: Architecture
-id: deltalabs-mobile/architecture
+id: architecture
 ---
 
 # DeltaLabs Mobile — Architecture Overview

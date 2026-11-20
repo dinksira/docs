@@ -1,7 +1,7 @@
 ---
 title: Mongodb I
 sidebar_label: Mongodb I
-id: deltalabs--database/index-catalog/mongodb-i
+id: mongodb-i
 ---
 
 > Indexes are created at runtime by each domain repository’s \`ensure\_indexes()\` (there is no checked-in migration script). Application startup or tests call these methods so indexes converge to the definitions below. \*\*Unique\*\* indexes enforce identity and prevent duplicate bindings; \*\*compound\*\* indexes match the sort fields used in list queries; \*\*partial\*\* indexes apply only when a filter matches; \*\*TTL\*\* indexes ask the server to delete documents after a datetime threshold.

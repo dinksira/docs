@@ -1,7 +1,7 @@
 ---
 title: Pagetsx
 sidebar_label: Pagetsx
-id: deltalabsfrontend/src/app/public/login/pagetsx
+id: pagetsx
 ---
 
 ```typescriptreact

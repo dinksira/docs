@@ -1,7 +1,7 @@
 ---
 title: config.ts
 sidebar_label: config.ts
-id: deltalabsfrontend/src/lib/configts
+id: configts
 ---
 
 # config.ts

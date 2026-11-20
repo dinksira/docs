@@ -1,7 +1,7 @@
 ---
 title: Resetpasswordpagedart
 sidebar_label: Resetpasswordpagedart
-id: deltalabs-mobile/lib/features/auth/presentation/pages/resetpasswordpagedart
+id: resetpasswordpagedart
 ---
 
 ```dart
