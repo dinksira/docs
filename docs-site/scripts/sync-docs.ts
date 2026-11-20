@@ -95,6 +95,7 @@ async function sync() {
         continue;
       }
       console.log(`   📄 ${pages.length} page(s) to sync`);
+      const workspaceDocIds = new Set<string>();
 
       for (const page of pages) {
         if (!page.slug) {
@@ -128,6 +129,7 @@ async function sync() {
         ].join('\n');
 
         fs.writeFileSync(filePath, frontmatter);
+        workspaceDocIds.add(safeSlug);
         console.log(`   ✅ ${safeSlug}.md`);
       }
 
@@ -136,7 +138,7 @@ async function sync() {
       const sidebarPath = path.join(process.cwd(), `sidebars-${slug}.json`);
       const sidebarConfig = {
         // We use the slug as the sidebar name for isolation
-        [`sidebar_${slug}`]: transformSidebar(sidebarTree)
+        [`sidebar_${slug}`]: transformSidebar(sidebarTree, workspaceDocIds, slug)
       };
       
       fs.writeFileSync(sidebarPath, JSON.stringify(sidebarConfig, null, 2));
@@ -162,20 +164,32 @@ async function sync() {
  * Transforms the MongoDB sidebar tree into a Docusaurus-compatible structure.
  * Cleans slugs to remove any workspace prefixes that may have leaked through.
  */
-function transformSidebar(nodes: any[]): any[] {
+function cleanDocSlug(raw: any, workspaceSlug: string): string {
+  let slug = String(raw || '');
+  const prefix = `ws:${workspaceSlug}:`;
+  while (slug.startsWith(prefix)) {
+    slug = slug.slice(prefix.length);
+  }
+  return slug.replace(/:/g, '-');
+}
+
+function transformSidebar(nodes: any[], validDocIds: Set<string>, workspaceSlug: string): any[] {
   if (!Array.isArray(nodes)) return [];
   
   return nodes.map(node => {
     if (node.type === 'page') {
-      const slug = (node.slug || '').replace(/:/g, '-');
-      if (!slug) return null;
+      const slug = cleanDocSlug(node.slug, workspaceSlug);
+      if (!slug || !validDocIds.has(slug)) {
+        console.warn(`   ⚠️ Skipping sidebar entry with missing doc: ${slug || '(empty)'}`);
+        return null;
+      }
       return {
         type: 'doc',
         id: slug,
         label: node.label || slug
       };
     } else if (node.type === 'category') {
-      const items = transformSidebar(node.children || []);
+      const items = transformSidebar(node.children || [], validDocIds, workspaceSlug);
       if (items.length === 0) return null;  // Skip empty categories
       return {
         type: 'category',
