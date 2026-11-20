@@ -1,7 +1,7 @@
 ---
 title: Overview
 sidebar_label: Overview
-id: overview/overview
+id: overview
 ---
 
 # Overview

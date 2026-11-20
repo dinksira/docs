@@ -1,7 +1,7 @@
 ---
 title: Index
 sidebar_label: Index
-id: templates/index
+id: index
 ---
 
 # Index

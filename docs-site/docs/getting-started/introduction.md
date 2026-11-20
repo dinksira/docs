@@ -1,7 +1,7 @@
 ---
 title: Introduction
 sidebar_label: Introduction
-id: getting-started/introduction
+id: introduction
 ---
 
 # Welcome to Delta Labs Documentation

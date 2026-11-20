@@ -1,7 +1,7 @@
 ---
 title: Index
 sidebar_label: Index
-id: api-reference/index
+id: index
 ---
 
 # Index

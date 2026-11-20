@@ -1,7 +1,7 @@
 ---
 title: Standards Intro
 sidebar_label: Standards Intro
-id: development-standards/standards-intro
+id: standards-intro
 ---
 
 # Standards Intro
