@@ -208,3 +208,33 @@ async def login(body: LoginIn):
         'message': "Verification code sent to your email"
     }
 
+class SendOTPIn(BaseModel):
+    email: EmailStr
+
+@router.post('/send-otp')
+async def send_otp(body: SendOTPIn):
+    db = get_db()
+    user = await db.users.find_one({'email': body.email})
+    if not user:
+        raise HTTPException(404, 'No account found with this email')
+    if user.get('status', 'pending') != 'approved':
+        raise HTTPException(403, 'Your account is pending approval')
+
+    otp = otp_service.generate_otp()
+    await otp_service.save_otp(str(user['_id']), otp)
+
+    try:
+        await email_service.send_otp_email(user.get('name', 'Admin'), user['email'], otp)
+    except Exception as e:
+        logger.error(f"[SEND-OTP] Email failed for {user['email']}: {str(e)}")
+        raise HTTPException(
+            status_code=500,
+            detail=f"Could not send verification code to {user['email']}. Error: {str(e)}"
+        )
+
+    return {
+        'requires_otp': True,
+        'email': user['email'],
+        'message': 'Verification code sent to your email'
+    }
+

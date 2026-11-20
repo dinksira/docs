@@ -110,12 +110,16 @@ export default function VerifyOTP() {
       sessionStorage.removeItem('otp_email');
       router.push('/docs');
     } catch (err: any) {
-      const msg = err.message || '';
-      if (msg.toLowerCase().includes('expired')) {
+      const detail = err?.message || err?.detail || '';
+      const msg = detail.toLowerCase();
+      if (msg.includes('expired') || msg.includes('no active code')) {
         setError('Your code has expired. Please request a new one.');
         setCanResend(true);
+      } else if (msg.includes('too many invalid')) {
+        setError('Too many attempts. Please request a new code.');
+        setCanResend(true);
       } else {
-        setError('Incorrect code. Please try again.');
+        setError(detail || 'Incorrect code. Please try again.');
         setOtp(['', '', '', '', '', '']);
         inputRefs.current[0]?.focus();
       }
@@ -133,7 +137,7 @@ export default function VerifyOTP() {
     
     try {
       await api.post('/auth/send-otp', { email });
-      setMessage('A new code has been sent to your phone.');
+      setMessage('A new code has been sent to your email.');
       setCanResend(false);
       setResendTimer(60);
       
@@ -149,7 +153,7 @@ export default function VerifyOTP() {
         });
       }, 1000);
     } catch (err: any) {
-      setError('Failed to send code. Please try again.');
+      setError(err?.message || err?.detail || 'Failed to send code. Please try again.');
     } finally {
       setLoading(false);
     }
