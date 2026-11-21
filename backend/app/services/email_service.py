@@ -32,8 +32,9 @@ async def _send_email(to_email: str, subject: str, body: str):
     if google_url:
         try:
             payload = {"to": to_email, "subject": subject, "body": body}
-            # DEBUG LOG: Verify what is actually being sent to Google
-            logger.info(f"[DEBUG] PAYLOAD BEING SENT TO GOOGLE: {payload}")
+            if settings.GOOGLE_SCRIPT_TOKEN:
+                payload["token"] = settings.GOOGLE_SCRIPT_TOKEN
+            logger.info(f"[EMAIL] Sending via Google Gateway to {to_email}")
             
             resp = requests.post(google_url, json=payload, timeout=15)
             # Some scripts return "Success", others just "OK". We look for anything that isn't "Error"
