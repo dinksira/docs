@@ -31,7 +31,7 @@ class Settings(BaseSettings):
     SMTP_USER: str = ''
     SMTP_PASSWORD: str = ''
     GOOGLE_SCRIPT_URL: str = ''
-    GOOGLE_CLIENT_ID: str = ''
+    GOOGLE_CLIENT_ID: str = '1012036745823-vtpb3p7dkvpkduserr8n51qhmsah5l1a.apps.googleusercontent.com'
     GOOGLE_CLIENT_SECRET: str = ''
 
     class Config:
